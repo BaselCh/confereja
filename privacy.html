@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Política de Privacidade — ConfereJá | Conformidade LGPD & Google Play</title>
-  <meta name="description" content="Política de Privacidade oficial do aplicativo ConfereJá. Arquitetura 100% offline, processamento local de imagem, sem coleta ou compartilhamento de dados pessoais. Em conformidade com a LGPD e Google Play.">
+  <title>Política de Privacidade — ConfereJá</title>
+  <meta name="description" content="Política de Privacidade do aplicativo ConfereJá. Esclarecimentos detalhados sobre o uso da câmera, processamento local de imagem, dados de diagnóstico do Google ML Kit e direitos sob a LGPD.">
   <link rel="icon" type="image/png" href="assets/confereja-play-icon-512.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -119,19 +119,17 @@
       display: flex;
       flex-wrap: wrap;
       gap: 16px;
+      margin-bottom: 12px;
     }
 
-    .policy-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--teal-50);
+    .policy-tag-line {
+      font-size: 0.85rem;
       color: var(--teal-800);
+      background: var(--teal-50);
       border: 1px solid var(--teal-100);
-      padding: 4px 12px;
-      border-radius: var(--radius-pill);
-      font-weight: 700;
-      font-size: 0.78rem;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      display: inline-block;
     }
 
     .policy-section {
@@ -168,6 +166,16 @@
       margin: 18px 0;
       font-size: 0.92rem;
       color: var(--teal-900);
+    }
+
+    .notice-box {
+      background: #FFFBEB;
+      border-left: 4px solid #D97706;
+      padding: 16px 20px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 18px 0;
+      font-size: 0.92rem;
+      color: #78350F;
     }
 
     footer {
@@ -208,208 +216,323 @@
   <main class="main-content">
     <div class="policy-card">
       
-      <!-- PT Content -->
+      <!-- ========================================== -->
+      <!-- PT Content (Português do Brasil - Padrão)  -->
+      <!-- ========================================== -->
       <div id="content-pt">
         <div class="policy-header">
-          <div style="margin-bottom:12px;">
-            <span class="policy-badge">✓ LGPD Conforme (Lei 13.709/2018)</span>
-            <span class="policy-badge">✓ Google Play Developer Policy</span>
-          </div>
           <h1>Política de Privacidade do ConfereJá</h1>
           <div class="policy-meta">
-            <span>Última atualização: 25 de Setembro de 2026</span>
+            <span>Última atualização: 26 de Setembro de 2026</span>
             <span>•</span>
             <span>Aplicativo: <strong>ConfereJá</strong> (com.confereja.app)</span>
+          </div>
+          <div class="policy-tag-line">
+            Documento elaborado com referência às diretrizes da Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018) e às Políticas do Programa para Desenvolvedores do Google Play.
           </div>
         </div>
 
         <div class="highlight-box">
-          <strong>Resumo Fundamental:</strong> O <strong>ConfereJá</strong> é um aplicativo de arquitetura <strong>100% offline</strong>. Nós <strong>NÃO</strong> coletamos, <strong>NÃO</strong> armazenamos em servidores externos e <strong>NÃO</strong> compartilhamos nenhum dado pessoal, localização, imagem ou informação bancária do usuário com terceiros.
+          <strong>Resumo de Transparência:</strong> O <strong>ConfereJá</strong> processa imagens de etiquetas e cálculos de compras <strong>localmente no seu dispositivo</strong>. O desenvolvedor não opera servidores externos e não coleta seus dados pessoais, nomes de produtos, preços ou fotos de compras. Contudo, o kit de desenvolvimento integrado (Google ML Kit) transmite informações diagnósticas e de desempenho para a Google LLC para fins operacionais, conforme detalhado nesta política.
         </div>
 
         <div class="policy-section">
-          <h2>1. Introdução e Propósito</h2>
-          <p>Esta Política de Privacidade explica de forma transparente como o aplicativo <strong>ConfereJá</strong> trata dados e permissões no seu dispositivo móvel Android. Desenvolvido com base no princípio da <em>Privacidade por Padrão (Privacy by Design)</em>, o ConfereJá tem por objetivo único auxiliar consumidores a registrarem e conferirem os preços exibidos nas prateleiras dos supermercados com o valor cobrado no caixa, nos termos da Lei Federal nº 10.962/2004 e da Lei nº 8.078/1990 (Código de Defesa do Consumidor).</p>
+          <h2>1. Introdução e Finalidade</h2>
+          <p>Esta Política de Privacidade descreve, com exatidão e transparência técnica, como o aplicativo <strong>ConfereJá</strong> gerencia recursos de hardware, dados armazenados no dispositivo e eventuais telemetrias de bibliotecas integradas.</p>
+          <p>O ConfereJá é uma ferramenta utilitária e independente, criada com o objetivo de apoiar consumidores na verificação e conferência de preços exibidos nas prateleiras dos supermercados com os valores registrados no caixa, tendo como referencial os direitos assegurados pela Lei Federal nº 10.962/2004 e pelo Código de Defesa do Consumidor (Lei nº 8.078/1990).</p>
         </div>
 
         <div class="policy-section">
           <h2>2. Permissão de Câmera (android.permission.CAMERA)</h2>
-          <p>O ConfereJá solicita acesso à câmera do seu dispositivo com a finalidade <strong>exclusiva e pontual</strong> de escanear o texto impresso nas etiquetas de preços das prateleiras (OCR — Reconhecimento Óptico de Caracteres).</p>
+          <p>O aplicativo requer acesso à câmera do seu smartphone exclusivamente para a leitura óptica de caracteres (OCR) impressos nas etiquetas de preço físicas das gôndolas.</p>
           <ul>
-            <li><strong>Processamento 100% Local (On-Device):</strong> O processamento visual é executado diretamente no processador do seu aparelho através dos modelos neurais locais da biblioteca Google ML Kit. Nenhum fluxo de vídeo ou foto é transmitido para a internet.</li>
-            <li><strong>Memória Transitória e Descarte Imediato:</strong> Os quadros intermediários capturados durante o direcionamento da câmera residem apenas temporariamente na memória RAM para a análise de texto e são liberados imediatamente (<code>Bitmap.recycle()</code>).</li>
-            <li><strong>Imagens Temporárias para Prova Visual:</strong> Quando uma etiqueta é lida e adicionada ao carrinho, o aplicativo armazena uma imagem recortada de alta resolução exclusivamente no diretório de armazenamento isolado e privado do próprio aplicativo no seu aparelho (<em>App-Specific Sandboxed Storage</em>). Essa foto existe apenas para que você possa mostrá-la ao operador de caixa caso haja divergência de preço. Assim que você finaliza a compra ou a descarta, todas as fotos são definitivamente excluídas do aparelho.</li>
+            <li><strong>Execução Local (On-Device):</strong> O processamento visual dos quadros da câmera ocorre inteiramente na CPU/GPU do seu próprio dispositivo por meio dos modelos neurais locais da biblioteca Google ML Kit. O fluxo de vídeo em tempo real nunca é transmitido para servidores remotos através da internet.</li>
+            <li><strong>Descarte Imediato de Memória:</strong> Os quadros intermediários capturados pela câmera para detectar caracteres são alocados de forma transitória na memória RAM e liberados imediatamente por meio de rotinas de reciclagem gráfica (<code>Bitmap.recycle()</code>), sem serem salvos em disco durante a pré-visualização.</li>
           </ul>
         </div>
 
         <div class="policy-section">
-          <h2>3. Coleta e Tratamento de Dados Pessoais</h2>
-          <p>Em estrita conformidade com o <strong>Artigo 6º e 7º da Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</strong>:</p>
+          <h2>3. Imagens Temporárias e Rotina de Exclusão de Arquivos</h2>
+          <p>Quando uma etiqueta é reconhecida e o usuário decide adicioná-la à compra corrente, o aplicativo salva uma imagem estática recortada da etiqueta exclusivamente no diretório de armazenamento interno e privado do aplicativo no aparelho (<em>App-Specific Internal Storage</em>).</p>
           <ul>
-            <li><strong>Sem Coleta de Informações Identificáveis:</strong> O aplicativo não exige cadastro, nome, CPF, e-mail, telefone ou senha.</li>
-            <li><strong>Sem Dados Financeiros:</strong> O ConfereJá não processa pagamentos e não acessa seus cartões ou contas bancárias. O valor de compra do aplicativo na Google Play Store é processado diretamente pelo sistema de faturamento nativo do Google Play.</li>
-            <li><strong>Sem Rastreamento de Localização:</strong> O aplicativo não solicita nem possui acesso ao GPS ou serviços de localização (<code>ACCESS_FINE_LOCATION</code> ou <code>ACCESS_COARSE_LOCATION</code>).</li>
+            <li><strong>Finalidade Estrita:</strong> A foto serve exclusivamente como referência visual pessoal para que o consumidor possa conferir e demonstrar o preço anunciado na gôndola caso ocorra divergência no momento do pagamento no caixa.</li>
+            <li><strong>Momento e Natureza da Exclusão:</strong> Quando a compra é finalizada no caixa ou descartada pelo usuário, o aplicativo aciona a exclusão dos arquivos de imagem correspondentes por meio de chamadas padrão do sistema de arquivos (<code>File.delete()</code>).</li>
+            <li><strong>Esclarecimento Técnico:</strong> Esta exclusão constitui uma operação padrão do sistema de arquivos do Android; não representa sanitização criptográfica irrecuperável ou sobrescrita forense em nível de hardware. Na eventualidade de falhas do sistema operacional ou encerramento forçado do processo antes da rotina de limpeza, arquivos residuais de cache podem ser removidos pelo usuário através das opções de gerenciamento de armazenamento do Android.</li>
           </ul>
         </div>
 
         <div class="policy-section">
-          <h2>4. Armazenamento Local e Soberania do Usuário</h2>
-          <p>Os registros das suas compras (nomes de produtos lidos, preços, data, hora e totais calculados) são gravados em um banco de dados local (Room / SQLite) dentro do espaço de armazenamento protegido do aplicativo no seu dispositivo.</p>
-          <p>Você detém total e exclusivo controle sobre esses dados:</p>
+          <h2>4. Coleta de Telemetria e Diagnóstico pelo Google ML Kit</h2>
+          <p>Para a funcionalidade de reconhecimento óptico de caracteres em etiquetas, o ConfereJá integra a biblioteca <strong>Google ML Kit Text Recognition</strong> fornecida pela Google LLC.</p>
+          <p>Conforme documentado nas diretrizes oficiais da Google (<a href="https://developers.google.com/ml-kit/android-data-disclosure" target="_blank" rel="noopener">Google ML Kit Android Data Disclosure</a>), embora a inferência e o processamento de imagens ocorram 100% no dispositivo e nenhum pixel ou texto lido seja compartilhado com a Google, a biblioteca ML Kit envia à Google LLC dados técnicos e estatísticos de uso, tais como:</p>
           <ul>
-            <li>Você pode excluir compras individuais ou itens diretamente pela interface do aplicativo.</li>
-            <li>Ao desinstalar o aplicativo ou limpar os dados nas configurações do Android, todo o histórico local é permanentemente e irreversivelmente destruído.</li>
+            <li><strong>Informações do Dispositivo:</strong> Fabricante, modelo de hardware, versão do sistema operacional Android.</li>
+            <li><strong>Informações do Aplicativo:</strong> Nome do pacote (<code>com.confereja.app</code>) e versão instalada.</li>
+            <li><strong>Informações da Biblioteca:</strong> Versão do SDK do ML Kit e configurações de inicialização.</li>
+            <li><strong>Diagnósticos e Desempenho:</strong> Latência das chamadas de API, códigos de erro e taxas de falhas operacionais.</li>
+            <li><strong>Identificadores Temporários:</strong> Identificadores de instalação gerados para telemetria e integridade da biblioteca.</li>
+          </ul>
+          <p>Esses dados de diagnóstico são tratados diretamente pela Google LLC em conformidade com a <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Política de Privacidade da Google</a> para fins de manutenção, detecção de falhas e aprimoramento da estabilidade do SDK.</p>
+          <p>O desenvolvedor do ConfereJá <strong>não</strong> inclui SDKs de publicidade, nem redes de anúncios, nem rastreadores comerciais de comportamento de terceiros.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>5. Armazenamento Local, Histórico e Controle pelo Usuário</h2>
+          <p>Os registros das compras (nomes lidos, preços, quantidades, data, hora e totais calculados) são gravados em um banco de dados local SQLite (gerenciado via Room) dentro do ambiente isolado (<em>Sandbox</em>) do aplicativo no seu dispositivo.</p>
+          <p>O usuário dispõe das seguintes opções de controle sobre os dados:</p>
+          <ul>
+            <li><strong>Durante a Compra:</strong> Desfazer a última adição ou remover itens durante a conferência na tela de escaneamento e na lista da compra.</li>
+            <li><strong>Descarte da Compra:</strong> Cancelar a compra em andamento antes do salvamento definitivo.</li>
+            <li><strong>Limpeza Completa:</strong> Apagar todos os dados locais do aplicativo por meio da opção disponível nas configurações do aplicativo ou nas configurações do próprio sistema Android (<em>Configurações → Aplicativos → ConfereJá → Armazenamento → Limpar Armazenamento</em>).</li>
+            <li><strong>Evolução do Histórico:</strong> A exclusão seletiva e individual de compras arquivadas no histórico está planejada para ser introduzida em atualizações funcionais subsequentes.</li>
+          </ul>
+
+          <div class="notice-box">
+            <strong>Aviso sobre Arquivos Exportados:</strong> Se o usuário utilizar recursos de exportação de dados para salvar arquivos (tais como relatórios em formato CSV ou JSON) no armazenamento público do dispositivo (por exemplo, pasta Downloads), esses arquivos exportados permanecem sob custódia e controle manual do usuário e <strong>não</strong> são automaticamente apagados com a desinstalação do aplicativo.
+          </div>
+        </div>
+
+        <div class="policy-section">
+          <h2>6. Direitos do Titular sob a LGPD (Lei nº 13.709/2018)</h2>
+          <p>Em observância aos Artigos 17 e 18 da LGPD, os titulares de dados têm direito a confirmação de tratamento, acesso, correção e eliminação de seus dados. Como o desenvolvedor não opera servidores externos e não armazena dados em nuvem, a gestão e o descarte dos dados operacionais cabem diretamente ao titular no próprio dispositivo, mediante a limpeza de dados ou desinstalação do software.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>7. Isenção de Vínculo Governamental ou com Estabelecimentos</h2>
+          <p>O ConfereJá é um software independente de auxílio ao consumidor. Não possui convênio, afiliação, representação ou delegação de órgãos de fiscalização estatal, entidades governamentais, Juizados Especiais ou unidades do PROCON, tampouco possui parceria comercial com estabelecimentos comerciais ou redes de supermercados.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>8. Declaração para o Google Play (Data Safety)</h2>
+          <p>Para fins do formulário de Segurança dos Dados (Data Safety Section) da Google Play Store:</p>
+          <ul>
+            <li><strong>Câmera:</strong> Utilizada como recurso de funcionalidade efêmera local; imagens não são coletadas nem compartilhadas pelo desenvolvedor.</li>
+            <li><strong>Identificadores do Dispositivo / Diagnóstico:</strong> Coletados exclusivamente pelo SDK Google ML Kit em nível de biblioteca para diagnósticos e desempenho, conforme documentação oficial da Google.</li>
+            <li><strong>Dados Pessoais / Financeiros:</strong> Nenhum dado cadastral ou financeiro é coletado, transmitido ou compartilhado pelo aplicativo.</li>
           </ul>
         </div>
 
         <div class="policy-section">
-          <h2>5. Compartilhamento de Dados com Terceiros</h2>
-          <p>O ConfereJá <strong>NÃO vende, NÃO aluga, NÃO transfere e NÃO compartilha</strong> qualquer tipo de informação com anunciantes, parceiros comerciais, redes sociais ou corretores de dados.</p>
-          <p>O aplicativo não contém SDKs de terceiros para fins de telemetria comportamental ou publicidade direcionada.</p>
-        </div>
-
-        <div class="policy-section">
-          <h2>6. Segurança da Informação</h2>
-          <p>A proteção dos seus dados baseia-se na segurança nativa do sistema operacional Android. O armazenamento local do ConfereJá é protegido pela política de <em>Sandbox</em> do Android, impedindo que outros aplicativos instalados no mesmo dispositivo acessem o banco de dados interno ou as imagens temporárias do ConfereJá.</p>
-        </div>
-
-        <div class="policy-section">
-          <h2>7. Privacidade de Crianças e Adolescentes</h2>
-          <p>O ConfereJá não é direcionado a crianças e não coleta intencionalmente dados de menores de idade, em total consonância com o Artigo 14 da LGPD e a política de famílias do Google Play.</p>
-        </div>
-
-        <div class="policy-section">
-          <h2>8. Isenção de Vínculo Governamental</h2>
-          <p>O ConfereJá é uma ferramenta privada e independente de auxílio ao consumidor. Não possui afiliação, representação ou endosso oficial de órgãos estatais de proteção ao consumidor, como o PROCON, Ministério da Justiça ou quaisquer entidades governamentais federais, estaduais ou municipais.</p>
-        </div>
-
-        <div class="policy-section">
-          <h2>9. Contato do Encarregado de Dados (DPO)</h2>
-          <p>Caso tenha quaisquer dúvidas sobre esta Política de Privacidade ou sobre as práticas de dados do ConfereJá, entre em contato com nosso responsável de proteção de dados:</p>
+          <h2>9. Canal de Comunicação e Contato</h2>
+          <p>Para esclarecimentos, dúvidas técnicas ou questões relacionadas a esta Política de Privacidade, entre em contato:</p>
           <ul>
-            <li><strong>Desenvolvedor / Encarregado:</strong> BaselCh</li>
+            <li><strong>Desenvolvedor Responsável:</strong> BaselCh</li>
             <li><strong>E-mail de Contato:</strong> <a href="mailto:baseljamal@gmail.com">baseljamal@gmail.com</a></li>
-            <li><strong>Código-fonte / Repositório:</strong> <a href="https://github.com/BaselCh/confereja" target="_blank" rel="noopener">github.com/BaselCh/confereja</a></li>
+            <li><strong>Repositório Público:</strong> <a href="https://github.com/BaselCh/confereja" target="_blank" rel="noopener">github.com/BaselCh/confereja</a></li>
           </ul>
         </div>
       </div>
 
-      <!-- EN Content -->
+      <!-- ========================================== -->
+      <!-- EN Content (English Version)               -->
+      <!-- ========================================== -->
       <div id="content-en" style="display:none;">
         <div class="policy-header">
-          <div style="margin-bottom:12px;">
-            <span class="policy-badge">✓ LGPD Compliant (Brazil Law 13.709/2018)</span>
-            <span class="policy-badge">✓ Google Play Developer Policy</span>
-          </div>
-          <h1>Privacy Policy — ConfereJá</h1>
+          <h1>ConfereJá Privacy Policy</h1>
           <div class="policy-meta">
-            <span>Last Updated: September 25, 2026</span>
+            <span>Last Updated: September 26, 2026</span>
             <span>•</span>
             <span>Application: <strong>ConfereJá</strong> (com.confereja.app)</span>
+          </div>
+          <div class="policy-tag-line">
+            Document drafted with reference to the guidelines of the Brazilian General Data Protection Law (LGPD — Law No. 13,709/2018) and Google Play Developer Program Policies.
           </div>
         </div>
 
         <div class="highlight-box">
-          <strong>Key Summary:</strong> <strong>ConfereJá</strong> is built on a <strong>100% offline</strong> architecture. We <strong>DO NOT</strong> collect, store on external cloud servers, or share any personal data, location, images, or financial details with third parties.
+          <strong>Transparency Summary:</strong> <strong>ConfereJá</strong> processes shelf label images and cart calculations <strong>locally on your device</strong>. The developer operates no remote servers and does not collect your personal data, grocery names, prices, or photos. However, the embedded Google ML Kit library transmits technical diagnostic and performance telemetry to Google LLC for operational purposes as outlined below.
         </div>
 
         <div class="policy-section">
-          <h2>1. Introduction & Purpose</h2>
-          <p>This Privacy Policy clearly outlines how <strong>ConfereJá</strong> manages data and device permissions on Android. Designed under <em>Privacy by Design</em> principles, the app's sole purpose is to help consumers scan, log, and verify shelf tag prices against checkout register prices in Brazilian supermarkets in accordance with Federal Law 10.962/2004 and the Consumer Defense Code (Law 8.078/1990).</p>
+          <h2>1. Introduction and Purpose</h2>
+          <p>This Privacy Policy outlines with technical accuracy and clarity how <strong>ConfereJá</strong> handles hardware permissions, local device data, and third-party library telemetry on Android.</p>
+          <p>ConfereJá is an independent utility application designed to assist consumers in verifying shelf prices against cashier checkout registers in retail supermarkets, drawing upon consumer protection rights under Brazilian Federal Law No. 10,962/2004 and the Consumer Defense Code (Law No. 8,078/1990).</p>
         </div>
 
         <div class="policy-section">
           <h2>2. Camera Permission (android.permission.CAMERA)</h2>
-          <p>ConfereJá requests camera access for the <strong>sole purpose</strong> of scanning printed shelf price tags via on-device Optical Character Recognition (OCR).</p>
+          <p>The application requires access to your smartphone camera exclusively for Optical Character Recognition (OCR) of printed text on shelf price tags.</p>
           <ul>
-            <li><strong>100% On-Device Processing:</strong> OCR is processed locally using Google ML Kit models on your device processor. No live camera feed or image is ever uploaded to the internet.</li>
-            <li><strong>Transient Memory & Prompt Cleanup:</strong> Camera frames used for real-time text recognition are kept in volatile RAM and immediately discarded (<code>Bitmap.recycle()</code>).</li>
-            <li><strong>Temporary Visual Proof:</strong> When a price tag is accepted, a cropped high-resolution snippet is saved strictly in the app's private sandboxed directory on your device. This image exists only so you can display it to the cashier in case of a price mismatch. Once the shopping trip is finished or discarded, all photos are permanently deleted.</li>
+            <li><strong>Local On-Device Execution:</strong> Visual processing of camera frames takes place entirely on your device CPU/GPU using Google ML Kit on-device neural models. Live camera video streams are never transmitted over the internet to remote servers.</li>
+            <li><strong>Immediate Memory Release:</strong> Intermediate preview frames captured while aiming the camera reside transiently in volatile RAM and are promptly freed using graphic recycling calls (<code>Bitmap.recycle()</code>), without being written to disk during preview.</li>
           </ul>
         </div>
 
         <div class="policy-section">
-          <h2>3. Data Collection and Processing</h2>
-          <p>Under Brazilian LGPD and global privacy standards:</p>
+          <h2>3. Temporary Label Images and File Deletion Lifecycle</h2>
+          <p>When a shelf label is recognized and added to an active shopping cart, the app saves a cropped static image snippet of that label exclusively in the app's sandboxed internal storage directory (<em>App-Specific Internal Storage</em>).</p>
           <ul>
-            <li><strong>No Personally Identifiable Information (PII):</strong> No accounts, logins, emails, names, or phone numbers are collected or required.</li>
-            <li><strong>No Financial Data:</strong> ConfereJá does not access bank cards or payment systems. The app purchase is handled directly through Google Play Billing.</li>
-            <li><strong>No Location Tracking:</strong> The app does not request or use GPS/Location permissions.</li>
+            <li><strong>Strict Purpose:</strong> This snippet serves solely as an immediate visual reference for the consumer to verify and display the announced shelf price should a pricing discrepancy occur at the checkout register.</li>
+            <li><strong>Deletion Timing and Mechanism:</strong> When a shopping trip is completed or discarded, the app triggers the deletion of these cropped image files using standard operating system filesystem calls (<code>File.delete()</code>).</li>
+            <li><strong>Technical Disclosure:</strong> This deletion represents standard Android filesystem deletion. It does not constitute forensic disk sanitization or cryptographic disk shredding. Should an operating system crash or abnormal termination occur prior to cleanup, residual cache files can be removed manually by the user through Android storage settings.</li>
           </ul>
         </div>
 
         <div class="policy-section">
-          <h2>4. Local Storage & User Control</h2>
-          <p>Shopping records (scanned product names, prices, quantities, and dates) are stored strictly within the app's local Room SQLite database on your device.</p>
-          <p>You have full sovereignty over this data: you can delete any trip or item at any time. Uninstalling the app permanently erases all stored data.</p>
-        </div>
-
-        <div class="policy-section">
-          <h2>5. Third-Party Data Sharing</h2>
-          <p>ConfereJá <strong>does not sell, rent, or transmit</strong> any user data to third-party ad networks, analytics brokers, or marketing partners. There are no advertising or tracking SDKs inside the app.</p>
-        </div>
-
-        <div class="policy-section">
-          <h2>6. Non-Governmental Affiliation</h2>
-          <p>ConfereJá is an independent utility application created to assist consumers. It is not affiliated with, endorsed by, or representing any government entity or official PROCON agency.</p>
-        </div>
-
-        <div class="policy-section">
-          <h2>7. Contact Information</h2>
-          <p>For inquiries regarding this policy or privacy practices:</p>
+          <h2>4. Google ML Kit Telemetry and Diagnostic Data Collection</h2>
+          <p>For text recognition on price tags, ConfereJá embeds the <strong>Google ML Kit Text Recognition</strong> library provided by Google LLC.</p>
+          <p>In accordance with official Google guidelines (<a href="https://developers.google.com/ml-kit/android-data-disclosure" target="_blank" rel="noopener">Google ML Kit Android Data Disclosure</a>), while model execution and optical parsing are performed 100% on-device and no camera pixels or recognized text are transmitted to Google, the ML Kit library automatically transmits certain technical diagnostics and telemetry metrics to Google LLC, including:</p>
           <ul>
-            <li><strong>Developer / Data Officer:</strong> BaselCh</li>
-            <li><strong>Email:</strong> <a href="mailto:baseljamal@gmail.com">baseljamal@gmail.com</a></li>
-            <li><strong>Repository:</strong> <a href="https://github.com/BaselCh/confereja" target="_blank" rel="noopener">github.com/BaselCh/confereja</a></li>
+            <li><strong>Device Specifications:</strong> Manufacturer, hardware model, Android OS version.</li>
+            <li><strong>App Information:</strong> Package name (<code>com.confereja.app</code>) and installed version.</li>
+            <li><strong>Library Configuration:</strong> ML Kit SDK version and initialization parameters.</li>
+            <li><strong>Performance & Diagnostics:</strong> API call latency, failure rates, and error codes.</li>
+            <li><strong>Ephemeral Identifiers:</strong> Ephemeral installation/instance identifiers used for telemetry and service health.</li>
+          </ul>
+          <p>This technical telemetry is processed directly by Google LLC pursuant to the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a> to maintain, troubleshoot, and enhance the ML Kit SDK.</p>
+          <p>ConfereJá contains no advertising SDKs, commercial ad networks, or third-party marketing behavioral trackers.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>5. Local Storage, History, and User Controls</h2>
+          <p>Shopping trip logs (scanned names, prices, quantities, date, time, and calculated totals) are stored locally in an SQLite database (managed via Room) inside the isolated app sandbox on your device.</p>
+          <p>The user exercises the following controls:</p>
+          <ul>
+            <li><strong>During Shopping:</strong> Undo the last addition or remove individual items on the scanner panel and cart screen.</li>
+            <li><strong>Discarding a Trip:</strong> Discard an open, active shopping trip prior to final completion.</li>
+            <li><strong>Complete Data Erasure:</strong> Clear all local application records through in-app settings or via Android system settings (<em>Settings → Apps → ConfereJá → Storage → Clear Storage</em>).</li>
+            <li><strong>History Management:</strong> Selective individual deletion of past archived trips from the history log is scheduled for subsequent feature releases.</li>
+          </ul>
+
+          <div class="notice-box">
+            <strong>Important Notice on Exported Files:</strong> If the user uses data export features to save files (such as CSV or JSON files) to public external storage (e.g., the Downloads folder), those exported files remain under manual user custody and are <strong>not</strong> automatically removed when uninstalling the application.
+          </div>
+        </div>
+
+        <div class="policy-section">
+          <h2>6. Data Subject Rights (LGPD)</h2>
+          <p>Under Brazilian LGPD (Articles 17 and 18), data subjects have rights regarding confirmation, access, correction, and deletion. Because the developer maintains no cloud infrastructure or remote accounts, users exercise direct custody and deletion directly on their own devices by clearing app storage or uninstalling the app.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>7. Non-Governmental and Non-Commercial Disclaimer</h2>
+          <p>ConfereJá is an independent utility tool. It is not affiliated with, endorsed by, or acting on behalf of any government agency, PROCON, consumer protection bureau, or commercial supermarket chain.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>8. Google Play Data Safety Alignment</h2>
+          <p>For Google Play Console Data Safety questionnaire declarations:</p>
+          <ul>
+            <li><strong>Camera:</strong> Utilized for ephemeral local on-device functionality; photos are not collected or transmitted by the developer.</li>
+            <li><strong>Device or Other IDs / Diagnostics:</strong> Collected exclusively by the Google ML Kit SDK at library level for diagnostics and analytics, as documented by Google.</li>
+            <li><strong>Personal / Financial Data:</strong> No user personal, financial, or contact information is collected or shared.</li>
+          </ul>
+        </div>
+
+        <div class="policy-section">
+          <h2>9. Contact and Communication</h2>
+          <p>For questions or technical inquiries regarding this Privacy Policy:</p>
+          <ul>
+            <li><strong>Developer:</strong> BaselCh</li>
+            <li><strong>Contact Email:</strong> <a href="mailto:baseljamal@gmail.com">baseljamal@gmail.com</a></li>
+            <li><strong>Public Repository:</strong> <a href="https://github.com/BaselCh/confereja" target="_blank" rel="noopener">github.com/BaselCh/confereja</a></li>
           </ul>
         </div>
       </div>
 
-      <!-- ES Content -->
+      <!-- ========================================== -->
+      <!-- ES Content (Versión en Español)           -->
+      <!-- ========================================== -->
       <div id="content-es" style="display:none;">
         <div class="policy-header">
-          <div style="margin-bottom:12px;">
-            <span class="policy-badge">✓ Conforme LGPD (Ley Brasil 13.709/2018)</span>
-            <span class="policy-badge">✓ Google Play Developer Policy</span>
-          </div>
           <h1>Política de Privacidad de ConfereJá</h1>
           <div class="policy-meta">
-            <span>Última actualización: 25 de Septiembre de 2026</span>
+            <span>Última actualización: 26 de Septiembre de 2026</span>
             <span>•</span>
             <span>Aplicación: <strong>ConfereJá</strong> (com.confereja.app)</span>
+          </div>
+          <div class="policy-tag-line">
+            Documento elaborado con referencia a las directrices de la Ley General de Protección de Datos de Brasil (LGPD — Ley nº 13.709/2018) y a las Políticas para Desarrolladores de Google Play.
           </div>
         </div>
 
         <div class="highlight-box">
-          <strong>Resumen Clave:</strong> <strong>ConfereJá</strong> opera bajo una arquitectura <strong>100% offline</strong>. <strong>NO</strong> recopilamos, <strong>NO</strong> almacenamos en la nube y <strong>NO</strong> compartimos ningún dato personal, ubicación, foto o dato financiero con terceros.
+          <strong>Resumen de Transparencia:</strong> <strong>ConfereJá</strong> procesa las imágenes de etiquetas y los cálculos de compras <strong>localmente en su dispositivo</strong>. El desarrollador no opera servidores externos ni recopila sus datos personales, nombres de productos, precios o fotos. No obstante, la biblioteca integrada Google ML Kit transmite datos técnicos de diagnóstico y rendimiento a Google LLC para fines operativos, tal como se detalla a continuación.
         </div>
 
         <div class="policy-section">
           <h2>1. Introducción y Propósito</h2>
-          <p>Esta Política de Privacidad describe el tratamiento de datos en <strong>ConfereJá</strong>. La aplicación fue diseñada para ayudar a los consumidores a escanear y comparar precios exhibidos en góndolas frente a los cobrados en la caja, en el marco de la legislación de defensa del consumidor.</p>
+          <p>Esta Política de Privacidad describe con exactitud técnica y total transparencia cómo la aplicación <strong>ConfereJá</strong> administra los permisos de hardware, los datos locales del dispositivo y la telemetría de bibliotecas integradas en Android.</p>
+          <p>ConfereJá es una herramienta utilitaria e independiente, diseñada para asistir a los consumidores en la verificación de precios de góndola frente a los registrados en la caja del supermercado, tomando como base legal la Ley Federal de Brasil nº 10.962/2004 y el Código de Defensa del Consumidor (Ley nº 8.078/1990).</p>
         </div>
 
         <div class="policy-section">
           <h2>2. Permiso de Cámara (android.permission.CAMERA)</h2>
-          <p>ConfereJá solicita acceso a la cámara únicamente para escanear etiquetas de precios en tiempo real mediante OCR local (Google ML Kit).</p>
+          <p>La aplicación requiere acceso a la cámara del teléfono exclusivamente para el reconocimiento óptico de caracteres (OCR) impresos en las etiquetas físicas de precio de las góndolas.</p>
           <ul>
-            <li><strong>Procesamiento Local:</strong> Las imágenes se procesan enteramente en el procesador de su teléfono; ningún fotograma se transmite por internet.</li>
-            <li><strong>Memoria Efímera:</strong> Los fotogramas se liberan de la memoria RAM inmediatamente después de la lectura.</li>
-            <li><strong>Foto Temporal de Respaldo:</strong> Se almacena un recorte temporal de la etiqueta en el almacenamiento privado de la app para que pueda mostrarla en caja en caso de divergencia. Al cerrar la compra, las imágenes se eliminan definitivamente.</li>
+            <li><strong>Ejecución Local (On-Device):</strong> El procesamiento visual de los fotogramas de la cámara se realiza íntegramente en la CPU/GPU de su propio dispositivo mediante modelos neuronales locales de Google ML Kit. El flujo de video nunca se transmite por internet a servidores remotos.</li>
+            <li><strong>Liberación Inmediata de Memoria:</strong> Los fotogramas intermedios capturados mientras se apunta la cámara residen de forma transitoria en la memoria RAM y se liberan de inmediato mediante llamadas de reciclaje gráfico (<code>Bitmap.recycle()</code>), sin guardarse en disco durante la vista previa.</li>
           </ul>
         </div>
 
         <div class="policy-section">
-          <h2>3. Almacenamiento Local y Privacidad</h2>
-          <p>El historial de compras se guarda de forma local en la base de datos interna (SQLite) de su dispositivo. Usted puede borrar productos o compras en cualquier momento, y la desinstalación elimina por completo todos los registros.</p>
+          <h2>3. Imágenes Temporales y Rutina de Eliminación de Archivos</h2>
+          <p>Cuando se reconoce una etiqueta y el usuario la agrega a su compra, la app guarda un recorte fotográfico estático exclusivamente en el directorio de almacenamiento interno y privado de la aplicación en el dispositivo (<em>App-Specific Internal Storage</em>).</p>
+          <ul>
+            <li><strong>Finalidad Estricta:</strong> La foto sirve únicamente como respaldo visual personal para que el consumidor pueda verificar y demostrar el precio exhibido en góndola en caso de existir discrepancia en la caja.</li>
+            <li><strong>Momento y Mecanismo de Eliminación:</strong> Al finalizar la compra en caja o al descartarla, la aplicación ejecuta la eliminación de los archivos de imagen mediante llamadas estándar del sistema de archivos (<code>File.delete()</code>).</li>
+            <li><strong>Aclaración Técnica:</strong> Esta eliminación constituye una operación estándar del sistema de archivos de Android; no representa una sanitización criptográfica irrecuperable ni un borrado forense de hardware. Si ocurre una interrupción imprevista del sistema operativo antes de la rutina de limpieza, los archivos residuales de caché pueden ser removidos manualmente por el usuario desde la configuración de almacenamiento de Android.</li>
+          </ul>
         </div>
 
         <div class="policy-section">
-          <h2>4. Contacto</h2>
-          <p>Para preguntas sobre la política de privacidad:</p>
+          <h2>4. Telemetría y Diagnóstico de Google ML Kit</h2>
+          <p>Para la funcionalidad de reconocimiento de texto en etiquetas, ConfereJá integra la biblioteca <strong>Google ML Kit Text Recognition</strong> provista por Google LLC.</p>
+          <p>De acuerdo con la documentación oficial de Google (<a href="https://developers.google.com/ml-kit/android-data-disclosure" target="_blank" rel="noopener">Google ML Kit Android Data Disclosure</a>), aunque la inferencia y el análisis de imágenes se ejecutan 100% en el dispositivo y ningún pixel o texto leído se envía a Google, la biblioteca ML Kit transmite automáticamente a Google LLC ciertos datos técnicos y de diagnóstico, tales como:</p>
           <ul>
-            <li><strong>Desarrollador:</strong> BaselCh</li>
-            <li><strong>Correo:</strong> <a href="mailto:baseljamal@gmail.com">baseljamal@gmail.com</a></li>
+            <li><strong>Información del Dispositivo:</strong> Fabricante, modelo de hardware, versión del sistema operativo Android.</li>
+            <li><strong>Información de la Aplicación:</strong> Nombre del paquete (<code>com.confereja.app</code>) y versión instalada.</li>
+            <li><strong>Información de la Biblioteca:</strong> Versión del SDK de ML Kit y parámetros de inicialización.</li>
+            <li><strong>Rendimiento y Diagnósticos:</strong> Latencia de llamadas a la API, códigos de error y tasas de fallo operativo.</li>
+            <li><strong>Identificadores Temporales:</strong> Identificadores de instalación efímeros generados para telemetría e integridad del servicio.</li>
+          </ul>
+          <p>Estos datos de diagnóstico son gestionados directamente por Google LLC bajo la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Política de Privacidad de Google</a> para mantenimiento, resolución de fallos y optimización del SDK.</p>
+          <p>ConfereJá no incluye SDKs de publicidad comercial ni rastreadores de comportamiento con fines comerciales.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>5. Almacenamiento Local, Historial y Control del Usuario</h2>
+          <p>Los registros de compras (nombres leídos, precios, cantidades, fecha, hora y totales calculados) se almacenan localmente en una base de datos SQLite (Room) dentro del entorno protegido (<em>Sandbox</em>) de la app en su dispositivo.</p>
+          <p>El usuario dispone de los siguientes controles:</p>
+          <ul>
+            <li><strong>Durante la Compra:</strong> Deshacer la última adición o eliminar artículos individuales en la pantalla de escaneo y en la lista de compra.</li>
+            <li><strong>Descarte de Compra:</strong> Cancelar la compra activa en curso antes de guardarla.</li>
+            <li><strong>Eliminación Total:</strong> Borrar todos los datos locales desde las opciones de la aplicación o mediante la configuración del sistema Android (<em>Ajustes → Aplicaciones → ConfereJá → Almacenamiento → Borrar Almacenamiento</em>).</li>
+            <li><strong>Evolución del Historial:</strong> La eliminación selectiva e individual de compras archivadas en el historial está planificada para futuras actualizaciones funcionales.</li>
+          </ul>
+
+          <div class="notice-box">
+            <strong>Aviso sobre Archivos Exportados:</strong> Si el usuario utiliza funciones de exportación de datos para guardar archivos (como reportes en formato CSV o JSON) en el almacenamiento público del dispositivo (por ejemplo, carpeta Descargas), dichos archivos permanecen bajo custodia y control manual del usuario y <strong>no</strong> se eliminan automáticamente al desinstalar la aplicación.
+          </div>
+        </div>
+
+        <div class="policy-section">
+          <h2>6. Derechos de los Titulares (LGPD)</h2>
+          <p>Bajo la LGPD (Artículos 17 y 18), los usuarios tienen derecho a confirmación, acceso, rectificación y eliminación de datos. Dado que el desarrollador no opera servidores en la nube ni cuentas remotas, el usuario ejerce el control y eliminación directamente en su propio teléfono mediante el borrado de datos o la desinstalación.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>7. Exención de Vínculo Gubernamental o Comercial</h2>
+          <p>ConfereJá es un software utilitario independiente. No posee vínculo, afiliación, representación ni patrocinio oficial de organismos estatales, entidades de defensa del consumidor (como PROCON), juzgados ni cadenas de supermercados.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>8. Declaración para Google Play (Seguridad de Datos)</h2>
+          <p>A efectos del formulario de Seguridad de los Datos (Data Safety) de Google Play Store:</p>
+          <ul>
+            <li><strong>Cámara:</strong> Utilizada para funcionalidad efímera local; las fotos no son recopiladas ni compartidas por el desarrollador.</li>
+            <li><strong>Identificadores de Dispositivo / Diagnóstico:</strong> Recopilados exclusivamente por el SDK de Google ML Kit para diagnóstico y rendimiento, según la documentación oficial de Google.</li>
+            <li><strong>Datos Personales / Financieros:</strong> La aplicación no recopila ni comparte ningún dato personal ni financiero.</li>
+          </ul>
+        </div>
+
+        <div class="policy-section">
+          <h2>9. Canal de Contacto y Comunicación</h2>
+          <p>Para consultas técnicas o aclaraciones sobre esta Política de Privacidad:</p>
+          <ul>
+            <li><strong>Desarrollador Responsável:</strong> BaselCh</li>
+            <li><strong>Correo Electrónico:</strong> <a href="mailto:baseljamal@gmail.com">baseljamal@gmail.com</a></li>
+            <li><strong>Repositorio Público:</strong> <a href="https://github.com/BaselCh/confereja" target="_blank" rel="noopener">github.com/BaselCh/confereja</a></li>
           </ul>
         </div>
       </div>
@@ -419,7 +542,7 @@
 
   <footer>
     <div style="max-width:860px; margin:0 auto; padding:0 24px;">
-      <p>© 2026 ConfereJá. Todos os direitos reservados. Em conformidade com a LGPD e Google Play Policies.</p>
+      <p>© 2026 ConfereJá. Todos os direitos reservados. Informações de privacidade e diretrizes técnicas do aplicativo.</p>
     </div>
   </footer>
 
