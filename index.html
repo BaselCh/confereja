@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConfereJá — Seu Defensor de Preços no Supermercado | Scanner de Etiquetas e Defesa do Consumidor</title>
+  <meta name="description" content="ConfereJá: Escaneie etiquetas de supermercado na hora, acompanhe o total do carrinho e garanta o menor preço no caixa conforme o Código de Defesa do Consumidor (CDC). 100% offline e privativo.">
+  <meta name="keywords" content="ConfereJá, scanner de preços, supermercado, CDC, Código de Defesa do Consumidor, etiqueta vs caixa, economia, compras, Brasil">
+  <meta property="og:title" content="ConfereJá — Seu Defensor de Preços no Supermercado">
+  <meta property="og:description" content="Escaneie etiquetas na hora, acompanhe o total do carrinho e confira antes de pagar. 100% offline, sem anúncios, dados 100% no seu aparelho.">
+  <meta property="og:image" content="assets/confereja-play-icon-512.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="assets/confereja-play-icon-512.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal-900: #083B3E;
+      --teal-800: #005A60;
+      --teal-700: #00777E;
+      --teal-600: #00939C;
+      --teal-100: #C7EEEA;
+      --teal-50: #E7F7F5;
+      --lime-500: #84CC16;
+      --lime-400: #A3E635;
+      --lime-100: #ECFCCB;
+      --paper: #F7FAF7;
+      --ink: #142425;
+      --muted: #526365;
+      --border: #DDE5E5;
+      --card-bg: #FFFFFF;
+      --danger: #BA1A1A;
+      --warning: #B45309;
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-pill: 9999px;
+      --shadow-sm: 0 2px 8px rgba(8, 59, 62, 0.06);
+      --shadow-md: 0 10px 30px rgba(8, 59, 62, 0.08);
+      --shadow-lg: 0 20px 40px rgba(8, 59, 62, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header / Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247, 250, 247, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--teal-900);
+      letter-spacing: -0.5px;
+    }
+
+    .brand-logo img {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 119, 126, 0.2);
+    }
+
+    .brand-logo span.highlight {
+      color: var(--teal-700);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--teal-700);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      background: var(--teal-50);
+      border: 1px solid var(--teal-100);
+      border-radius: var(--radius-pill);
+      padding: 4px;
+      gap: 2px;
+    }
+
+    .lang-btn {
+      background: none;
+      border: none;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      color: var(--teal-800);
+      transition: all 0.2s ease;
+    }
+
+    .lang-btn.active {
+      background: var(--teal-700);
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(0, 119, 126, 0.3);
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--teal-700);
+      color: #FFFFFF;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 14px rgba(0, 119, 126, 0.25);
+      transition: all 0.25s ease;
+    }
+
+    .btn-cta:hover {
+      background: var(--teal-800);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(0, 119, 126, 0.35);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 0 60px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--teal-50);
+      border: 1px solid var(--teal-100);
+      color: var(--teal-800);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 24px;
+    }
+
+    .badge-pill .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--lime-500);
+      box-shadow: 0 0 0 3px rgba(132, 204, 22, 0.3);
+    }
+
+    .hero-title {
+      font-size: 3.25rem;
+      line-height: 1.15;
+      font-weight: 800;
+      color: var(--teal-900);
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+
+    .hero-title span.accent {
+      background: linear-gradient(135deg, var(--teal-700) 0%, var(--lime-500) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.18rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+      max-width: 580px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--teal-700) 0%, var(--teal-800) 100%);
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 14px 28px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 8px 24px rgba(0, 119, 126, 0.3);
+      transition: all 0.25s ease;
+    }
+
+    .btn-hero-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0, 119, 126, 0.4);
+    }
+
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #FFFFFF;
+      color: var(--teal-900);
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 14px 26px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+    }
+
+    .btn-hero-secondary:hover {
+      background: var(--teal-50);
+      border-color: var(--teal-100);
+      transform: translateY(-2px);
+    }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .trust-item svg {
+      color: var(--teal-700);
+      flex-shrink: 0;
+    }
+
+    /* Phone Mockup Frame */
+    .mockup-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .phone-frame {
+      width: 320px;
+      height: 640px;
+      background: var(--ink);
+      border-radius: 46px;
+      padding: 12px;
+      box-shadow: 0 25px 60px -15px rgba(8, 59, 62, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      border-radius: 36px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 20px;
+      background: #000;
+      border-radius: 12px;
+      z-index: 10;
+    }
+
+    /* Scanner View in Mockup */
+    .mockup-scanner {
+      flex: 1;
+      position: relative;
+      background: linear-gradient(180deg, #101c1d 0%, #083B3E 100%);
+      display: flex;
+      flex-direction: column;
+      padding: 40px 16px 16px;
+      color: #fff;
+    }
+
+    .scanner-target-box {
+      margin: 30px auto;
+      width: 230px;
+      height: 140px;
+      border: 2px dashed rgba(163, 230, 53, 0.8);
+      border-radius: 16px;
+      position: relative;
+      background: rgba(0, 0, 0, 0.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .target-tag-mock {
+      background: #FFFFFF;
+      color: #111;
+      border-radius: 8px;
+      padding: 8px 12px;
+      width: 90%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .target-tag-name {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #444;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .target-tag-price {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #083B3E;
+    }
+
+    .target-tag-unit {
+      font-size: 0.6rem;
+      color: #777;
+    }
+
+    .scan-reticle {
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      border: 2px solid var(--lime-400);
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(163, 230, 53, 0.5);
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+
+    .scanner-bottom-sheet {
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--ink);
+      border-radius: 20px;
+      padding: 14px 16px;
+      margin-top: auto;
+    }
+
+    .sheet-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      margin-bottom: 8px;
+    }
+
+    .sheet-total {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--teal-900);
+    }
+
+    .sheet-btn {
+      width: 100%;
+      background: var(--teal-700);
+      color: #fff;
+      border: none;
+      padding: 8px 0;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* Floating highlight badge */
+    .floating-card {
+      position: absolute;
+      background: #FFFFFF;
+      padding: 12px 18px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 20;
+    }
+
+    .floating-card.left {
+      bottom: 70px;
+      left: -35px;
+    }
+
+    .floating-card.right {
+      top: 90px;
+      right: -30px;
+    }
+
+    .floating-card .icon-box {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--lime-100);
+      color: var(--lime-900);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .floating-card .text-box h4 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .floating-card .text-box p {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* Section Styles */
+    section {
+      padding: 90px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 56px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--teal-700);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 2.35rem;
+      font-weight: 800;
+      color: var(--teal-900);
+      letter-spacing: -1px;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--teal-100);
+    }
+
+    .feature-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      background: var(--teal-50);
+      color: var(--teal-700);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--teal-900);
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+
+    .feature-card p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Legal / CDC Protection Box */
+    .cdc-banner {
+      background: linear-gradient(135deg, var(--teal-900) 0%, var(--teal-800) 100%);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 60px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cdc-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .cdc-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--lime-400);
+      margin-bottom: 20px;
+    }
+
+    .cdc-banner h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .cdc-banner p {
+      color: #D1E5E4;
+      font-size: 1rem;
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    .law-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .law-item {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      backdrop-filter: blur(8px);
+    }
+
+    .law-item h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--lime-400);
+      margin-bottom: 6px;
+    }
+
+    .law-item p {
+      font-size: 0.85rem;
+      color: #E2ECEB;
+      margin: 0;
+    }
+
+    /* Comparison Table */
+    .compare-section {
+      background: #FFFFFF;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .compare-table th {
+      background: var(--teal-50);
+      color: var(--teal-900);
+      padding: 18px 24px;
+      font-weight: 800;
+      text-align: left;
+      font-size: 0.95rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compare-table td {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .compare-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .compare-table td.strong {
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .compare-table td.highlight {
+      background: rgba(199, 238, 234, 0.2);
+      font-weight: 700;
+      color: var(--teal-800);
+    }
+
+    /* FAQ Section */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .faq-item {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .faq-item h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--teal-900);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .faq-item p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* CTA Bottom */
+    .cta-bottom {
+      background: var(--teal-50);
+      border: 1px solid var(--teal-100);
+      border-radius: var(--radius-lg);
+      padding: 60px 40px;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .cta-bottom h2 {
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: var(--teal-900);
+      margin-bottom: 14px;
+      letter-spacing: -0.5px;
+    }
+
+    .cta-bottom p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 580px;
+      margin: 0 auto 32px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--ink);
+      color: #94A3B8;
+      padding: 60px 0 30px;
+      font-size: 0.9rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-brand h3 {
+      color: #FFFFFF;
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      max-width: 380px;
+    }
+
+    .footer-col h4 {
+      color: #FFFFFF;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col a {
+      color: #94A3B8;
+      transition: color 0.2s ease;
+    }
+
+    .footer-col a:hover {
+      color: var(--lime-400);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 30px;
+      font-size: 0.82rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+      }
+      .hero-title {
+        font-size: 2.6rem;
+      }
+      .hero-subtitle {
+        margin: 0 auto 30px;
+      }
+      .hero-ctas {
+        justify-content: center;
+      }
+      .hero-trust {
+        justify-content: center;
+      }
+      .floating-card {
+        display: none;
+      }
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .cdc-grid {
+        grid-template-columns: 1fr;
+      }
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-title {
+        font-size: 2.1rem;
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/confereja-play-icon-512.png" alt="ConfereJá Icon">
+        <span>Confere<span class="highlight">Já</span></span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#como-funciona" data-i18n="nav_how">Como Funciona</a>
+        <a href="#recursos" data-i18n="nav_features">Recursos</a>
+        <a href="#direitos" data-i18n="nav_cdc">Direito do Consumidor</a>
+        <a href="#faq" data-i18n="nav_faq">Dúvidas</a>
+        <a href="privacy.html" data-i18n="nav_privacy">Privacidade</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Language Switcher -->
+        <div class="lang-switcher" aria-label="Language Selector">
+          <button class="lang-btn active" onclick="setLang('pt')" id="btn-pt">PT</button>
+          <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+          <button class="lang-btn" onclick="setLang('es')" id="btn-es">ES</button>
+        </div>
+
+        <a href="#baixar" class="btn-cta" data-i18n="nav_download">Baixar APK</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="badge-pill">
+            <span class="dot"></span>
+            <span data-i18n="hero_badge">100% Offline • Sem Conta • Privativo</span>
+          </div>
+
+          <h1 class="hero-title" data-i18n="hero_title">
+            O preço na prateleira <br><span class="accent">deve ser o mesmo</span> no caixa.
+          </h1>
+
+          <p class="hero-subtitle" data-i18n="hero_subtitle">
+            Escaneie etiquetas com a câmera do seu celular, acompanhe o total do carrinho em tempo real e comprove a diferença no caixa com o respaldo do Código de Defesa do Consumidor (CDC).
+          </p>
+
+          <div class="hero-ctas">
+            <a href="https://github.com/BaselCh/confereja/releases/download/v1.0.0/ConfereJa.apk" class="btn-hero-primary" id="baixar">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span data-i18n="hero_cta_download">Baixar APK Direto (v1.0)</span>
+            </a>
+
+            <a href="https://play.google.com/store/apps/details?id=com.confereja.app" class="btn-hero-secondary" target="_blank" rel="noopener">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186c-.198-.2-.31-.476-.31-.767V2.581c0-.291.112-.567.31-.767zM15.207 13.414l2.457 2.458-13.048 7.546 10.591-10.004zM18.828 12l-1.921-1.921 2.378-1.375c.87-.504.87-1.321 0-1.825l-2.378-1.375L18.828 12zm-3.621-1.414L4.616 0.582 17.664 8.128l-2.457 2.458z"/></svg>
+              <span data-i18n="hero_cta_play">Google Play (Em Breve)</span>
+            </a>
+          </div>
+
+          <div class="hero-trust">
+            <div class="trust-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-i18n="trust_cdc">Conforme CDC Art. 30 e 35</span>
+            </div>
+            <div class="trust-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-i18n="trust_offline">Sem Internet e Sem Servidor</span>
+            </div>
+            <div class="trust-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-i18n="trust_lgpd">100% LGPD Seguro</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone Mockup -->
+        <div class="mockup-container">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="phone-notch"></div>
+              
+              <div class="mockup-scanner">
+                <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.75rem; font-weight:700;">
+                  <span>NOVA COMPRA</span>
+                  <span style="color:var(--lime-400);">● AO VIVO</span>
+                </div>
+
+                <div class="scanner-target-box">
+                  <div class="scan-reticle"></div>
+                  <div class="target-tag-mock">
+                    <div class="target-tag-name">CAFÉ TORRADO 500G</div>
+                    <div class="target-tag-price">R$ 18,90</div>
+                    <div class="target-tag-unit">Preço unitário / etiqueta</div>
+                  </div>
+                </div>
+
+                <div style="font-size:0.72rem; text-align:center; color:#A7D0D2; margin-bottom:12px;">
+                  Mantenha a etiqueta dentro do quadro
+                </div>
+
+                <div class="scanner-bottom-sheet">
+                  <div class="sheet-row">
+                    <span style="color:var(--muted); font-weight:600;">Subtotal (4 itens)</span>
+                    <span class="sheet-total">R$ 53,99</span>
+                  </div>
+                  <div class="sheet-btn">
+                    FINALIZAR E CONFERIR NO CAIXA
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Floating Badges -->
+          <div class="floating-card right">
+            <div class="icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="text-box">
+              <h4 data-i18n="float_savings_title">Economia Imediata</h4>
+              <p data-i18n="float_savings_sub">Evite pagar a mais no caixa</p>
+            </div>
+          </div>
+
+          <div class="floating-card left">
+            <div class="icon-box" style="background:var(--teal-50); color:var(--teal-700);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="text-box">
+              <h4 data-i18n="float_proof_title">Prova Visual Rápida</h4>
+              <p data-i18n="float_proof_sub">Foto temporária da etiqueta</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="como-funciona" style="background:#FFFFFF;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="how_tag">Simplicidade & Velocidade</span>
+        <h2 class="section-title" data-i18n="how_title">Como o ConfereJá protege o seu bolso em 3 passos</h2>
+        <p class="section-subtitle" data-i18n="how_subtitle">Criado para ser usado com uma só mão enquanto você empurra o carrinho no supermercado.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+          <h3 data-i18n="step1_title">1. Aponte e Escaneie</h3>
+          <p data-i18n="step1_desc">Aponte a câmera para a etiqueta da gôndola. O algoritmo OCR local reconhece o nome e o preço em frações de segundo, sem precisar digitar nada.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          </div>
+          <h3 data-i18n="step2_title">2. Acompanhe a Conta</h3>
+          <p data-i18n="step2_desc">Veja a soma exata de cada item adicionado ao carrinho em tempo real. Ajuste quantidades com os botões + e - com total praticidade.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h3 data-i18n="step3_title">3. Confirme no Caixa</h3>
+          <p data-i18n="step3_desc">No momento do pagamento, compare o visor do caixa com sua lista. Se houver divergência, você tem a foto da etiqueta salva para exigir o menor preço na hora.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CDC / Brazilian Legal Shield Section -->
+  <section id="direitos">
+    <div class="container">
+      <div class="cdc-banner">
+        <div class="cdc-grid">
+          <div>
+            <div class="cdc-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+              <span data-i18n="cdc_badge_text">Legislação Federal Brasileira</span>
+            </div>
+            <h2 data-i18n="cdc_section_title">A lei brasileira está do seu lado. O ConfereJá é o seu instrumento.</h2>
+            <p data-i18n="cdc_section_p">
+              Você já passou por isso: o produto marca um valor na prateleira, mas o leitor do caixa cobra mais caro. Segundo a lei, o consumidor NÃO é obrigado a pagar a mais por erro de etiquetagem do supermercado.
+            </p>
+            <p style="font-size:0.88rem; color:#A7D0D2;" data-i18n="cdc_disclaimer">
+              * O ConfereJá é um aplicativo independente de utilidade pública e conferência pessoal. Não possui vínculo com órgãos governamentais ou entidades oficiais do PROCON.
+            </p>
+          </div>
+
+          <div class="law-cards">
+            <div class="law-item">
+              <h4 data-i18n="law1_title">Art. 35 do CDC (Lei 8.078/1990)</h4>
+              <p data-i18n="law1_text">Se o fornecedor recusar o cumprimento da oferta veiculada na prateleira, o consumidor tem o direito de exigir o cumprimento forçado da obrigação nos termos da oferta.</p>
+            </div>
+
+            <div class="law-item">
+              <h4 data-i18n="law2_title">Lei Federal nº 10.962/2004</h4>
+              <p data-i18n="law2_text">Art. 5º: No caso de divergência de preços para o mesmo produto entre os sistemas de informação de preços utilizados pelo estabelecimento, o consumidor pagará o menor entre eles.</p>
+            </div>
+
+            <div class="law-item">
+              <h4 data-i18n="law3_title">Decreto Federal nº 5.903/2006</h4>
+              <p data-i18n="law3_text">Obriga o comércio a manter preços visíveis, legíveis e sem pegadinhas ao consumidor. A prova fotográfica obtida na hora garante transparência imediata.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section id="recursos" style="background:#FFFFFF;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="features_tag">Privacidade & Engenharia</span>
+        <h2 class="section-title" data-i18n="features_title">Desenvolvido com respeito absoluto aos seus dados</h2>
+        <p class="section-subtitle" data-i18n="features_subtitle">Nada de anúncios irritantes, nada de contas com senha, e absolutamente nenhum dado sai do seu smartphone.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3 data-i18n="f1_title">100% Offline e Privativo</h3>
+          <p data-i18n="f1_desc">Funciona em qualquer subsolo ou supermercado sem sinal 4G/Wi-Fi. Todos os cálculos e OCR ocorrem localmente no processador do seu celular.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+          <h3 data-i18n="f2_title">Câmera Efêmera & Segura</h3>
+          <p data-i18n="f2_desc">A câmera é usada unicamente para ler os caracteres da etiqueta. Os quadros intermediários são descartados da memória RAM imediatamente após a leitura.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          </div>
+          <h3 data-i18n="f3_title">Zero Anúncios & Zero Rastreamento</h3>
+          <p data-i18n="f3_desc">Sem popups, sem banners e sem SDKs de rastreamento comercial. Sua experiência é rápida, limpa e respeitosa com a bateria do seu aparelho.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <h3 data-i18n="f4_title">Ajuste Manual e Toque de Foco</h3>
+          <p data-i18n="f4_desc">Toque em qualquer ponto da tela para focar etiquetas menores ou com reflexo plástico. Ajuste o nome ou o preço manualmente a qualquer instante com um clique.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3 data-i18n="f5_title">Auto-Limpeza de Armazenamento</h3>
+          <p data-i18n="f5_desc">As fotos das etiquetas são mantidas apenas durante a revisão no caixa. Assim que a compra é concluída, as fotos são apagadas para não lotar sua memória.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3 data-i18n="f6_title">Histórico de Compras</h3>
+          <p data-i18n="f6_desc">Guarde o resumo das suas compras passadas para comparar despesas mensais e acompanhar quando e onde ocorreram divergências de valores.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="faq_tag">Perguntas Frequentes</span>
+        <h2 class="section-title" data-i18n="faq_title">Tire suas dúvidas sobre o ConfereJá</h2>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3 data-i18n="faq1_q">O aplicativo precisa de internet no supermercado?</h3>
+          <p data-i18n="faq1_a">Não! O ConfereJá foi projetado com arquitetura 100% offline. Ele utiliza modelos neurais locais (Google ML Kit on-device) que funcionam perfeitamente mesmo em subsolos sem nenhum sinal de rede celular ou Wi-Fi.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 data-i18n="faq2_q">Como o aplicativo prova que a etiqueta estava com aquele preço?</h3>
+          <p data-i18n="faq2_a">Ao escanear a etiqueta, o aplicativo salva temporariamente a imagem real recortada da etiqueta. Se o caixa registrar um preço diferente, basta abrir o painel de conferência e mostrar a foto nítida da etiqueta ao funcionário.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 data-i18n="faq3_q">O supermercado é obrigado a me vender pelo preço menor?</h3>
+          <p data-i18n="faq3_a">Sim! Pelo Artigo 5º da Lei Federal nº 10.962/2004 e Artigo 35 do Código de Defesa do Consumidor, na divergência entre o preço anunciado na gôndola e o preço do caixa, prevalece sempre o menor preço para o consumidor.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 data-i18n="faq4_q">Meus dados ou imagens são enviados para algum servidor?</h3>
+          <p data-i18n="faq4_a">Absolutamente não. Nenhum byte de dado, histórico ou foto sai do seu smartphone. Não temos servidores remotos, não coletamos dados para marketing e respeitamos rigorosamente a LGPD (Lei 13.709/2018).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Bottom -->
+  <div class="container">
+    <div class="cta-bottom">
+      <h2 data-i18n="cta_title">Pronto para nunca mais pagar a mais no supermercado?</h2>
+      <p data-i18n="cta_sub">Instale o ConfereJá e tenha total controle dos seus gastos e dos seus direitos de consumidor na palma da mão.</p>
+      
+      <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+        <a href="https://github.com/BaselCh/confereja/releases/download/v1.0.0/ConfereJa.apk" class="btn-hero-primary">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span data-i18n="cta_dl_btn">Baixar APK Gratuito (Teste)</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>
+            <img src="assets/confereja-symbol.svg" alt="ConfereJá Logo" width="28" height="28" style="vertical-align:middle;">
+            ConfereJá
+          </h3>
+          <p data-i18n="footer_bio">
+            Ferramenta auxiliar de conferência de preços de supermercado e apoio ao consumidor. Projetada com foco em simplicidade, privacidade e respeito à legislação brasileira.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer_legal_title">Legal & Privacidade</h4>
+          <ul>
+            <li><a href="privacy.html" data-i18n="footer_link_privacy">Política de Privacidade (LGPD)</a></li>
+            <li><a href="terms.html" data-i18n="footer_link_terms">Termos de Uso & Isenção</a></li>
+            <li><a href="https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm" target="_blank" rel="noopener">Código de Defesa do Consumidor (CDC)</a></li>
+            <li><a href="https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l10.962.htm" target="_blank" rel="noopener">Lei Federal nº 10.962/2004</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer_contact_title">Contato & Suporte</h4>
+          <ul>
+            <li><span>Desenvolvedor: BaselCh</span></li>
+            <li><a href="https://github.com/BaselCh/confereja" target="_blank" rel="noopener">Repositório no GitHub</a></li>
+            <li><a href="mailto:contato.confereja@gmail.com">contato.confereja@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 ConfereJá. Todos os direitos reservados.
+        </div>
+        <div>
+          Feito com foco no consumidor brasileiro 🇧🇷
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Multi-Language Script -->
+  <script>
+    const translations = {
+      pt: {
+        nav_how: "Como Funciona",
+        nav_features: "Recursos",
+        nav_cdc: "Direito do Consumidor",
+        nav_faq: "Dúvidas",
+        nav_privacy: "Privacidade",
+        nav_download: "Baixar APK",
+        hero_badge: "100% Offline • Sem Conta • Privativo",
+        hero_title: "O preço na prateleira <br><span class=\"accent\">deve ser o mesmo</span> no caixa.",
+        hero_subtitle: "Escaneie etiquetas com a câmera do seu celular, acompanhe o total do carrinho em tempo real e comprove a diferença no caixa com o respaldo do Código de Defesa do Consumidor (CDC).",
+        hero_cta_download: "Baixar APK Direto (v1.0)",
+        hero_cta_play: "Google Play (Em Breve)",
+        trust_cdc: "Conforme CDC Art. 30 e 35",
+        trust_offline: "Sem Internet e Sem Servidor",
+        trust_lgpd: "100% LGPD Seguro",
+        float_savings_title: "Economia Imediata",
+        float_savings_sub: "Evite pagar a mais no caixa",
+        float_proof_title: "Prova Visual Rápida",
+        float_proof_sub: "Foto temporária da etiqueta",
+        how_tag: "Simplicidade & Velocidade",
+        how_title: "Como o ConfereJá protege o seu bolso em 3 passos",
+        how_subtitle: "Criado para ser usado com uma só mão enquanto você empurra o carrinho no supermercado.",
+        step1_title: "1. Aponte e Escaneie",
+        step1_desc: "Aponte a câmera para a etiqueta da gôndola. O algoritmo OCR local reconhece o nome e o preço em frações de segundo, sem precisar digitar nada.",
+        step2_title: "2. Acompanhe a Conta",
+        step2_desc: "Veja a soma exata de cada item adicionado ao carrinho em tempo real. Ajuste quantidades com os botões + e - com total praticidade.",
+        step3_title: "3. Confirme no Caixa",
+        step3_desc: "No momento do pagamento, compare o visor do caixa com sua lista. Se houver divergência, você tem a foto da etiqueta salva para exigir o menor preço na hora.",
+        cdc_badge_text: "Legislação Federal Brasileira",
+        cdc_section_title: "A lei brasileira está do seu lado. O ConfereJá é o seu instrumento.",
+        cdc_section_p: "Você já passou por isso: o produto marca um valor na prateleira, mas o leitor do caixa cobra mais caro. Segundo a lei, o consumidor NÃO é obrigado a pagar a mais por erro de etiquetagem do supermercado.",
+        cdc_disclaimer: "* O ConfereJá é um aplicativo independente de utilidade pública e conferência pessoal. Não possui vínculo com órgãos governamentais ou entidades oficiais do PROCON.",
+        law1_title: "Art. 35 do CDC (Lei 8.078/1990)",
+        law1_text: "Se o fornecedor recusar o cumprimento da oferta veiculada na prateleira, o consumidor tem o direito de exigir o cumprimento forçado da obrigação nos termos da oferta.",
+        law2_title: "Lei Federal nº 10.962/2004",
+        law2_text: "Art. 5º: No caso de divergência de preços para o mesmo produto entre os sistemas de informação de preços utilizados pelo estabelecimento, o consumidor pagará o menor entre eles.",
+        law3_title: "Decreto Federal nº 5.903/2006",
+        law3_text: "Obriga o comércio a manter preços visíveis, legíveis e sem pegadinhas ao consumidor. A prova fotográfica obtida na hora garante transparência imediata.",
+        features_tag: "Privacidade & Engenharia",
+        features_title: "Desenvolvido com respeito absoluto aos seus dados",
+        features_subtitle: "Nada de anúncios irritantes, nada de contas com senha, e absolutamente nenhum dado sai do seu smartphone.",
+        f1_title: "100% Offline e Privativo",
+        f1_desc: "Funciona em qualquer subsolo ou supermercado sem sinal 4G/Wi-Fi. Todos os cálculos e OCR ocorrem localmente no processador do seu celular.",
+        f2_title: "Câmera Efêmera & Segura",
+        f2_desc: "A câmera é usada unicamente para ler os caracteres da etiqueta. Os quadros intermediários são descartados da memória RAM imediatamente após a leitura.",
+        f3_title: "Zero Anúncios & Zero Rastreamento",
+        f3_desc: "Sem popups, sem banners e sem SDKs de rastreamento comercial. Sua experiência é rápida, limpa e respeitosa com a bateria do seu aparelho.",
+        f4_title: "Ajuste Manual e Toque de Foco",
+        f4_desc: "Toque em qualquer ponto da tela para focar etiquetas menores ou com reflexo plástico. Ajuste o nome ou o preço manualmente a qualquer instante com um clique.",
+        f5_title: "Auto-Limpeza de Armazenamento",
+        f5_desc: "As fotos das etiquetas são mantidas apenas durante a revisão no caixa. Assim que a compra é concluída, as fotos são apagadas para não lotar sua memória.",
+        f6_title: "Histórico de Compras",
+        f6_desc: "Guarde o resumo das suas compras passadas para comparar despesas mensais e acompanhar quando e onde ocorreram divergências de valores.",
+        faq_tag: "Perguntas Frequentes",
+        faq_title: "Tire suas dúvidas sobre o ConfereJá",
+        faq1_q: "O aplicativo precisa de internet no supermercado?",
+        faq1_a: "Não! O ConfereJá foi projetado com arquitetura 100% offline. Ele utiliza modelos neurais locais (Google ML Kit on-device) que funcionam perfeitamente mesmo em subsolos sem nenhum sinal de rede celular ou Wi-Fi.",
+        faq2_q: "Como o aplicativo prova que a etiqueta estava com aquele preço?",
+        faq2_a: "Ao escanear a etiqueta, o aplicativo salva temporariamente a imagem real recortada da etiqueta. Se o caixa registrar um preço diferente, basta abrir o painel de conferência e mostrar a foto nítida da etiqueta ao funcionário.",
+        faq3_q: "O supermercado é obrigado a me vender pelo preço menor?",
+        faq3_a: "Sim! Pelo Artigo 5º da Lei Federal nº 10.962/2004 e Artigo 35 do Código de Defesa do Consumidor, na divergência entre o preço anunciado na gôndola e o preço do caixa, prevalece sempre o menor preço para o consumidor.",
+        faq4_q: "Meus dados ou imagens são enviados para algum servidor?",
+        faq4_a: "Absolutamente não. Nenhum byte de dado, histórico ou foto sai do seu smartphone. Não temos servidores remotos, não coletamos dados para marketing e respeitamos rigorosamente a LGPD (Lei 13.709/2018).",
+        cta_title: "Pronto para nunca mais pagar a mais no supermercado?",
+        cta_sub: "Instale o ConfereJá e tenha total controle dos seus gastos e dos seus direitos de consumidor na palma da mão.",
+        cta_dl_btn: "Baixar APK Gratuito (Teste)",
+        footer_bio: "Ferramenta auxiliar de conferência de preços de supermercado e apoio ao consumidor. Projetada com foco em simplicidade, privacidade e respeito à legislação brasileira.",
+        footer_legal_title: "Legal & Privacidade",
+        footer_link_privacy: "Política de Privacidade (LGPD)",
+        footer_link_terms: "Termos de Uso & Isenção",
+        footer_contact_title: "Contato & Suporte"
+      },
+      en: {
+        nav_how: "How It Works",
+        nav_features: "Features",
+        nav_cdc: "Consumer Rights",
+        nav_faq: "FAQ",
+        nav_privacy: "Privacy",
+        nav_download: "Download APK",
+        hero_badge: "100% Offline • No Account • Private",
+        hero_title: "The shelf price <br><span class=\"accent\">must be the same</span> at checkout.",
+        hero_subtitle: "Scan supermarket shelf labels, track your running cart total in real time, and prove price discrepancies at checkout backed by Brazilian Consumer Law.",
+        hero_cta_download: "Download Direct APK (v1.0)",
+        hero_cta_play: "Google Play (Coming Soon)",
+        trust_cdc: "Backed by Brazilian Consumer Law",
+        trust_offline: "No Internet or Servers Needed",
+        trust_lgpd: "100% LGPD & Privacy Compliant",
+        float_savings_title: "Instant Savings",
+        float_savings_sub: "Never overpay at checkout",
+        float_proof_title: "Instant Visual Proof",
+        float_proof_sub: "Temporary shelf label snapshot",
+        how_tag: "Simplicity & Speed",
+        how_title: "How ConfereJá protects your wallet in 3 steps",
+        how_subtitle: "Built to be used with one hand while pushing your shopping cart down the aisle.",
+        step1_title: "1. Point & Scan",
+        step1_desc: "Point the camera at the shelf price tag. The on-device OCR engine detects the name and price in milliseconds, zero typing required.",
+        step2_title: "2. Track Your Cart",
+        step2_desc: "Watch the exact sum of your items update in real time. Adjust quantities easily with + and - buttons.",
+        step3_title: "3. Verify at Checkout",
+        step3_desc: "When paying, verify register prices against your list. If there is a price mismatch, pull up your shelf tag photo to claim the lower price on the spot.",
+        cdc_badge_text: "Brazilian Federal Legislation",
+        cdc_section_title: "Brazilian law is on your side. ConfereJá is your tool.",
+        cdc_section_p: "You've been there: an item has one price on the shelf, but the cashier scanner charges higher. Under Brazilian law, consumers are NOT obligated to pay more due to store labeling errors.",
+        cdc_disclaimer: "* ConfereJá is an independent personal verification tool. It is not affiliated with any government agency or PROCON.",
+        law1_title: "Consumer Code Art. 35 (Law 8.078/1990)",
+        law1_text: "If a retailer refuses to honor an advertised offer on the shelf, the consumer has the legal right to demand compliance at the advertised price.",
+        law2_title: "Federal Law No. 10.962/2004",
+        law2_text: "Article 5: In case of price divergence for the same item between shelf display and checkout system, the consumer pays the lowest price.",
+        law3_title: "Federal Decree No. 5.903/2006",
+        law3_text: "Requires retailers to keep prices clear, visible, and unambiguous. Direct photo evidence provides immediate transparency.",
+        features_tag: "Privacy & Engineering",
+        features_title: "Engineered with absolute respect for your data",
+        features_subtitle: "No annoying ads, no account setup, and zero bytes leaving your smartphone.",
+        f1_title: "100% Offline & Private",
+        f1_desc: "Works in basements or stores with zero Wi-Fi or cellular signal. All OCR calculations happen locally on your phone's processor.",
+        f2_title: "Ephemeral & Secure Camera",
+        f2_desc: "The camera is used solely to parse characters on price tags. Intermediate frames are discarded from RAM immediately upon scan.",
+        f3_title: "Zero Ads & Zero Tracking",
+        f3_desc: "No popups, no banners, and zero third-party tracking SDKs. Fast, clean, and gentle on your battery.",
+        f4_title: "Manual Editing & Tap-to-Focus",
+        f4_desc: "Tap anywhere on the viewfinder to focus tricky tags. Manually edit any item name or price with a single tap.",
+        f5_title: "Automatic Storage Cleanup",
+        f5_desc: "Shelf photos are kept only during checkout review. Once confirmed, photos are purged so your phone storage remains uncluttered.",
+        f6_title: "Purchase History",
+        f6_desc: "Keep records of past trips to analyze monthly spending and monitor which supermarkets have recurring price discrepancies.",
+        faq_tag: "Frequently Asked Questions",
+        faq_title: "Everything you need to know about ConfereJá",
+        faq1_q: "Does the app need internet in the supermarket?",
+        faq1_a: "No! ConfereJá is 100% offline. It uses on-device Google ML Kit models that run entirely on your phone without internet or Wi-Fi.",
+        faq2_q: "How does the app prove the shelf price was lower?",
+        faq2_a: "When you scan a tag, the app temporarily captures a clean crop of the shelf price. Show this photo to the cashier to claim your right under CDC.",
+        faq3_q: "Is the store legally required to honor the lower shelf price?",
+        faq3_a: "Yes! Under Brazilian Federal Law 10.962/2004 and CDC Art. 35, when a price discrepancy occurs between shelf and register, the consumer pays the lower price.",
+        faq4_q: "Are my photos or data uploaded anywhere?",
+        faq4_a: "Never. All data and photos stay encrypted in your device's local sandbox storage. We have no backend servers and do not collect any personal data.",
+        cta_title: "Ready to stop overpaying at the supermarket?",
+        cta_sub: "Install ConfereJá today and protect your consumer rights and household budget.",
+        cta_dl_btn: "Download Free Test APK",
+        footer_bio: "Auxiliary price verification tool for Brazilian supermarket shoppers. Built for speed, privacy, and full compliance with consumer defense law.",
+        footer_legal_title: "Legal & Privacy",
+        footer_link_privacy: "Privacy Policy (LGPD)",
+        footer_link_terms: "Terms of Use & Disclaimers",
+        footer_contact_title: "Contact & Support"
+      },
+      es: {
+        nav_how: "Cómo Funciona",
+        nav_features: "Funciones",
+        nav_cdc: "Derechos del Consumidor",
+        nav_faq: "Preguntas",
+        nav_privacy: "Privacidad",
+        nav_download: "Descargar APK",
+        hero_badge: "100% Offline • Sin Cuenta • Privado",
+        hero_title: "El precio en la góndola <br><span class=\"accent\">debe ser el mismo</span> en la caja.",
+        hero_subtitle: "Escanea etiquetas con la cámara de tu móvil, sigue el total de tu carrito en tiempo real y exige el menor precio respaldado por la ley del consumidor.",
+        hero_cta_download: "Descargar APK Directo (v1.0)",
+        hero_cta_play: "Google Play (Próximamente)",
+        trust_cdc: "Conforme a la Ley del Consumidor",
+        trust_offline: "Sin Internet ni Servidores",
+        trust_lgpd: "100% Privacidad y LGPD Seguro",
+        float_savings_title: "Ahorro Inmediato",
+        float_savings_sub: "Evita pagar de más en la caja",
+        float_proof_title: "Prueba Visual Rápida",
+        float_proof_sub: "Foto temporal de la etiqueta",
+        how_tag: "Simplicidad & Rapidez",
+        how_title: "Cómo ConfereJá protege tu bolsillo en 3 pasos",
+        how_subtitle: "Diseñado para ser usado con una sola mano mientras empujas el carrito.",
+        step1_title: "1. Apunta y Escanea",
+        step1_desc: "Apunta la cámara a la etiqueta del estante. El motor OCR local reconoce el nombre y el precio en milisegundos sin escribir nada.",
+        step2_title: "2. Monitorea tu Carrito",
+        step2_desc: "Observa la suma exacta de tus productos en tiempo real. Ajusta cantidades con los botones + y - de forma inmediata.",
+        step3_title: "3. Confirma en la Caja",
+        step3_desc: "Al momento de pagar, compara con la pantalla del cajero. Si hay diferencia, tienes la foto de la etiqueta para exigir el precio menor.",
+        cdc_badge_text: "Legislación Federal de Consumo",
+        cdc_section_title: "La ley está de tu lado. ConfereJá es tu herramienta.",
+        cdc_section_p: "¿Te ha pasado que un producto marca un precio en la góndola pero en la caja te cobran más caro? La ley establece que el consumidor paga el menor valor.",
+        cdc_disclaimer: "* ConfereJá es una aplicación independiente de apoyo al consumidor. No posee vínculo con órganos gubernamentales ni PROCON.",
+        law1_title: "Código de Consumo Art. 35",
+        law1_text: "Si el comercio se rehúsa a cumplir la oferta publicada en góndola, el consumidor tiene derecho a exigir su cumplimiento forzado.",
+        law2_title: "Ley Federal nº 10.962/2004",
+        law2_text: "En caso de divergencia de precios para el mismo producto entre la góndola y la caja, el consumidor pagará el menor de ellos.",
+        law3_title: "Decreto nº 5.903/2006",
+        law3_text: "Obliga a exhibir precios claros y legibles. La prueba fotográfica inmediata brinda respaldo absoluto al cliente.",
+        features_tag: "Privacidad & Rendimiento",
+        features_title: "Desarrollado con respeto absoluto a tu privacidad",
+        features_subtitle: "Sin publicidad invasiva, sin cuentas ni contraseñas, y cero datos saliendo de tu dispositivo.",
+        f1_title: "100% Offline y Privado",
+        f1_desc: "Funciona en subsuelos y supermercados sin cobertura celular. Todo el procesamiento se ejecuta localmente en tu teléfono.",
+        f2_title: "Cámara Efímera & Segura",
+        f2_desc: "La cámara se utiliza únicamente para leer los caracteres. Las imágenes intermedias se descartan de la memoria al instante.",
+        f3_title: "Cero Anuncios y Sin Rastreo",
+        f3_desc: "Sin banners ni rastreadores comerciales. Máxima velocidad y respeto absoluto por la batería de tu teléfono.",
+        f4_title: "Ajuste Manual y Enfoque Táctil",
+        f4_desc: "Toca la pantalla para enfocar etiquetas pequeñas. Ajusta el nombre o el precio manualmente en cualquier momento con un toque.",
+        f5_title: "Limpieza Automática de Fotos",
+        f5_desc: "Las fotos se guardan solo durante la revisión en caja. Al finalizar la compra, se borran automáticamente para no ocupar espacio.",
+        f6_title: "Historial de Compras",
+        f6_desc: "Conserva el registro de tus compras anteriores para comparar tus gastos e identificar qué tiendas cometen más errores.",
+        faq_tag: "Preguntas Frecuentes",
+        faq_title: "Todo lo que necesitas saber sobre ConfereJá",
+        faq1_q: "¿La aplicación requiere internet en el supermercado?",
+        faq1_a: "¡No! ConfereJá funciona 100% sin conexión usando tecnología Google ML Kit on-device directamente en tu procesador.",
+        faq2_q: "¿Cómo prueba la app el precio de la góndola?",
+        faq2_a: "Al escanear, la app guarda temporalmente la captura nítida de la etiqueta para que puedas mostrársela al cajero con total seguridad.",
+        faq3_q: "¿El supermercado está obligado a cobrarme el precio menor?",
+        faq3_a: "¡Sí! Por ley federal (Lei 10.962/2004 e CDC Art. 35), ante cualquier discrepancia entre góndola y caja, el consumidor paga el menor precio.",
+        faq4_q: "¿Mis fotos o datos se envían a algún servidor?",
+        faq4_a: "En absoluto. Todo permanece cifrado y aislado en la memoria interna de tu teléfono. No recopilamos datos personales.",
+        cta_title: "¿Listo para no volver a pagar de más?",
+        cta_sub: "Instala ConfereJá y toma el control de tus compras y tus derechos en la palma de tu mano.",
+        cta_dl_btn: "Descargar APK de Prueba",
+        footer_bio: "Herramienta auxiliar de verificación de precios de supermercado y apoyo al consumidor. Creada con enfoque en privacidad y legislación.",
+        footer_legal_title: "Legal & Privacidad",
+        footer_link_privacy: "Política de Privacidad (LGPD)",
+        footer_link_terms: "Términos de Uso",
+        footer_contact_title: "Contacto & Soporte"
+      }
+    };
+
+    function setLang(lang) {
+      if (!translations[lang]) return;
+      document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+      
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById('btn-' + lang);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const dict = translations[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.innerHTML = dict[key];
+        }
+      });
+      localStorage.setItem('confereja_lang', lang);
+    }
+
+    // Auto load preference
+    const saved = localStorage.getItem('confereja_lang');
+    if (saved && translations[saved]) {
+      setLang(saved);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Símbolo ConfereJá</title>
+  <desc id="desc">Etiqueta de preço combinada com carrinho e marca de confirmação.</desc>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M96 176h54l36 184h194" stroke="#005A60" stroke-width="38"/>
+    <circle cx="220" cy="414" r="22" fill="#005A60"/>
+    <circle cx="350" cy="414" r="22" fill="#005A60"/>
+    <path d="M180 114c0-22 18-40 40-40h176c22 0 40 18 40 40v150c0 13-6 25-16 33l-90 72c-15 12-37 11-51-3l-87-87a40 40 0 0 1-12-28V114Z" fill="#00777E" stroke="#005A60" stroke-width="10"/>
+    <circle cx="374" cy="135" r="20" fill="#F7FAF7"/>
+    <path d="m236 224 49 49 91-104" stroke="#A3E635" stroke-width="34"/>
+  </g>
+</svg>

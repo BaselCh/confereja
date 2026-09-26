@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidade — ConfereJá | Conformidade LGPD & Google Play</title>
+  <meta name="description" content="Política de Privacidade oficial do aplicativo ConfereJá. Arquitetura 100% offline, processamento local de imagem, sem coleta ou compartilhamento de dados pessoais. Em conformidade com a LGPD e Google Play.">
+  <link rel="icon" type="image/png" href="assets/confereja-play-icon-512.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal-900: #083B3E;
+      --teal-800: #005A60;
+      --teal-700: #00777E;
+      --teal-50: #E7F7F5;
+      --teal-100: #C7EEEA;
+      --lime-500: #84CC16;
+      --paper: #F7FAF7;
+      --ink: #142425;
+      --muted: #526365;
+      --border: #DDE5E5;
+      --card-bg: #FFFFFF;
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-pill: 9999px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: var(--paper);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+    a { color: var(--teal-700); text-decoration: none; font-weight: 600; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--teal-900);
+    }
+    .brand img { width: 36px; height: 36px; border-radius: 8px; }
+
+    .lang-switcher {
+      display: flex;
+      background: var(--teal-50);
+      border: 1px solid var(--teal-100);
+      border-radius: var(--radius-pill);
+      padding: 3px;
+      gap: 2px;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      color: var(--teal-800);
+    }
+    .lang-btn.active {
+      background: var(--teal-700);
+      color: #fff;
+    }
+
+    .main-content {
+      max-width: 860px;
+      margin: 40px auto 80px;
+      padding: 0 24px;
+    }
+
+    .policy-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(8, 59, 62, 0.04);
+    }
+
+    .policy-header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+    .policy-header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--teal-900);
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+    .policy-meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .policy-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--teal-50);
+      color: var(--teal-800);
+      border: 1px solid var(--teal-100);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      font-size: 0.78rem;
+    }
+
+    .policy-section {
+      margin-bottom: 32px;
+    }
+    .policy-section h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--teal-900);
+      margin-bottom: 14px;
+      letter-spacing: -0.3px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .policy-section p, .policy-section li {
+      font-size: 0.96rem;
+      color: #334155;
+      margin-bottom: 12px;
+    }
+    .policy-section ul {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+    .policy-section li {
+      margin-bottom: 6px;
+    }
+
+    .highlight-box {
+      background: var(--teal-50);
+      border-left: 4px solid var(--teal-700);
+      padding: 16px 20px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 18px 0;
+      font-size: 0.92rem;
+      color: var(--teal-900);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+      background: #FFFFFF;
+    }
+
+    @media (max-width: 640px) {
+      .policy-card { padding: 24px; }
+      .policy-header h1 { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand">
+        <img src="assets/confereja-play-icon-512.png" alt="ConfereJá Logo">
+        <span>ConfereJá</span>
+      </a>
+
+      <div style="display:flex; align-items:center; gap:16px;">
+        <div class="lang-switcher">
+          <button class="lang-btn active" onclick="setLang('pt')" id="btn-pt">PT</button>
+          <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+          <button class="lang-btn" onclick="setLang('es')" id="btn-es">ES</button>
+        </div>
+        <a href="index.html" style="font-size:0.9rem;" id="back-link">← Voltar ao Início</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="policy-card">
+      
+      <!-- PT Content -->
+      <div id="content-pt">
+        <div class="policy-header">
+          <div style="margin-bottom:12px;">
+            <span class="policy-badge">✓ LGPD Conforme (Lei 13.709/2018)</span>
+            <span class="policy-badge">✓ Google Play Developer Policy</span>
+          </div>
+          <h1>Política de Privacidade do ConfereJá</h1>
+          <div class="policy-meta">
+            <span>Última atualização: 25 de Setembro de 2026</span>
+            <span>•</span>
+            <span>Aplicativo: <strong>ConfereJá</strong> (com.confereja.app)</span>
+          </div>
+        </div>
+
+        <div class="highlight-box">
+          <strong>Resumo Fundamental:</strong> O <strong>ConfereJá</strong> é um aplicativo de arquitetura <strong>100% offline</strong>. Nós <strong>NÃO</strong> coletamos, <strong>NÃO</strong> armazenamos em servidores externos e <strong>NÃO</strong> compartilhamos nenhum dado pessoal, localização, imagem ou informação bancária do usuário com terceiros.
+        </div>
+
+        <div class="policy-section">
+          <h2>1. Introdução e Propósito</h2>
+          <p>Esta Política de Privacidade explica de forma transparente como o aplicativo <strong>ConfereJá</strong> trata dados e permissões no seu dispositivo móvel Android. Desenvolvido com base no princípio da <em>Privacidade por Padrão (Privacy by Design)</em>, o ConfereJá tem por objetivo único auxiliar consumidores a registrarem e conferirem os preços exibidos nas prateleiras dos supermercados com o valor cobrado no caixa, nos termos da Lei Federal nº 10.962/2004 e da Lei nº 8.078/1990 (Código de Defesa do Consumidor).</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>2. Permissão de Câmera (android.permission.CAMERA)</h2>
+          <p>O ConfereJá solicita acesso à câmera do seu dispositivo com a finalidade <strong>exclusiva e pontual</strong> de escanear o texto impresso nas etiquetas de preços das prateleiras (OCR — Reconhecimento Óptico de Caracteres).</p>
+          <ul>
+            <li><strong>Processamento 100% Local (On-Device):</strong> O processamento visual é executado diretamente no processador do seu aparelho através dos modelos neurais locais da biblioteca Google ML Kit. Nenhum fluxo de vídeo ou foto é transmitido para a internet.</li>
+            <li><strong>Memória Transitória e Descarte Imediato:</strong> Os quadros intermediários capturados durante o direcionamento da câmera residem apenas temporariamente na memória RAM para a análise de texto e são liberados imediatamente (<code>Bitmap.recycle()</code>).</li>
+            <li><strong>Imagens Temporárias para Prova Visual:</strong> Quando uma etiqueta é lida e adicionada ao carrinho, o aplicativo armazena uma imagem recortada de alta resolução exclusivamente no diretório de armazenamento isolado e privado do próprio aplicativo no seu aparelho (<em>App-Specific Sandboxed Storage</em>). Essa foto existe apenas para que você possa mostrá-la ao operador de caixa caso haja divergência de preço. Assim que você finaliza a compra ou a descarta, todas as fotos são definitivamente excluídas do aparelho.</li>
+          </ul>
+        </div>
+
+        <div class="policy-section">
+          <h2>3. Coleta e Tratamento de Dados Pessoais</h2>
+          <p>Em estrita conformidade com o <strong>Artigo 6º e 7º da Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</strong>:</p>
+          <ul>
+            <li><strong>Sem Coleta de Informações Identificáveis:</strong> O aplicativo não exige cadastro, nome, CPF, e-mail, telefone ou senha.</li>
+            <li><strong>Sem Dados Financeiros:</strong> O ConfereJá não processa pagamentos e não acessa seus cartões ou contas bancárias. O valor de compra do aplicativo na Google Play Store é processado diretamente pelo sistema de faturamento nativo do Google Play.</li>
+            <li><strong>Sem Rastreamento de Localização:</strong> O aplicativo não solicita nem possui acesso ao GPS ou serviços de localização (<code>ACCESS_FINE_LOCATION</code> ou <code>ACCESS_COARSE_LOCATION</code>).</li>
+          </ul>
+        </div>
+
+        <div class="policy-section">
+          <h2>4. Armazenamento Local e Soberania do Usuário</h2>
+          <p>Os registros das suas compras (nomes de produtos lidos, preços, data, hora e totais calculados) são gravados em um banco de dados local (Room / SQLite) dentro do espaço de armazenamento protegido do aplicativo no seu dispositivo.</p>
+          <p>Você detém total e exclusivo controle sobre esses dados:</p>
+          <ul>
+            <li>Você pode excluir compras individuais ou itens diretamente pela interface do aplicativo.</li>
+            <li>Ao desinstalar o aplicativo ou limpar os dados nas configurações do Android, todo o histórico local é permanentemente e irreversivelmente destruído.</li>
+          </ul>
+        </div>
+
+        <div class="policy-section">
+          <h2>5. Compartilhamento de Dados com Terceiros</h2>
+          <p>O ConfereJá <strong>NÃO vende, NÃO aluga, NÃO transfere e NÃO compartilha</strong> qualquer tipo de informação com anunciantes, parceiros comerciais, redes sociais ou corretores de dados.</p>
+          <p>O aplicativo não contém SDKs de terceiros para fins de telemetria comportamental ou publicidade direcionada.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>6. Segurança da Informação</h2>
+          <p>A proteção dos seus dados baseia-se na segurança nativa do sistema operacional Android. O armazenamento local do ConfereJá é protegido pela política de <em>Sandbox</em> do Android, impedindo que outros aplicativos instalados no mesmo dispositivo acessem o banco de dados interno ou as imagens temporárias do ConfereJá.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>7. Privacidade de Crianças e Adolescentes</h2>
+          <p>O ConfereJá não é direcionado a crianças e não coleta intencionalmente dados de menores de idade, em total consonância com o Artigo 14 da LGPD e a política de famílias do Google Play.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>8. Isenção de Vínculo Governamental</h2>
+          <p>O ConfereJá é uma ferramenta privada e independente de auxílio ao consumidor. Não possui afiliação, representação ou endosso oficial de órgãos estatais de proteção ao consumidor, como o PROCON, Ministério da Justiça ou quaisquer entidades governamentais federais, estaduais ou municipais.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>9. Contato do Encarregado de Dados (DPO)</h2>
+          <p>Caso tenha quaisquer dúvidas sobre esta Política de Privacidade ou sobre as práticas de dados do ConfereJá, entre em contato com nosso responsável de proteção de dados:</p>
+          <ul>
+            <li><strong>Desenvolvedor / Encarregado:</strong> BaselCh</li>
+            <li><strong>E-mail de Contato:</strong> <a href="mailto:contato.confereja@gmail.com">contato.confereja@gmail.com</a></li>
+            <li><strong>Código-fonte / Repositório:</strong> <a href="https://github.com/BaselCh/confereja" target="_blank" rel="noopener">github.com/BaselCh/confereja</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- EN Content -->
+      <div id="content-en" style="display:none;">
+        <div class="policy-header">
+          <div style="margin-bottom:12px;">
+            <span class="policy-badge">✓ LGPD Compliant (Brazil Law 13.709/2018)</span>
+            <span class="policy-badge">✓ Google Play Developer Policy</span>
+          </div>
+          <h1>Privacy Policy — ConfereJá</h1>
+          <div class="policy-meta">
+            <span>Last Updated: September 25, 2026</span>
+            <span>•</span>
+            <span>Application: <strong>ConfereJá</strong> (com.confereja.app)</span>
+          </div>
+        </div>
+
+        <div class="highlight-box">
+          <strong>Key Summary:</strong> <strong>ConfereJá</strong> is built on a <strong>100% offline</strong> architecture. We <strong>DO NOT</strong> collect, store on external cloud servers, or share any personal data, location, images, or financial details with third parties.
+        </div>
+
+        <div class="policy-section">
+          <h2>1. Introduction & Purpose</h2>
+          <p>This Privacy Policy clearly outlines how <strong>ConfereJá</strong> manages data and device permissions on Android. Designed under <em>Privacy by Design</em> principles, the app's sole purpose is to help consumers scan, log, and verify shelf tag prices against checkout register prices in Brazilian supermarkets in accordance with Federal Law 10.962/2004 and the Consumer Defense Code (Law 8.078/1990).</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>2. Camera Permission (android.permission.CAMERA)</h2>
+          <p>ConfereJá requests camera access for the <strong>sole purpose</strong> of scanning printed shelf price tags via on-device Optical Character Recognition (OCR).</p>
+          <ul>
+            <li><strong>100% On-Device Processing:</strong> OCR is processed locally using Google ML Kit models on your device processor. No live camera feed or image is ever uploaded to the internet.</li>
+            <li><strong>Transient Memory & Prompt Cleanup:</strong> Camera frames used for real-time text recognition are kept in volatile RAM and immediately discarded (<code>Bitmap.recycle()</code>).</li>
+            <li><strong>Temporary Visual Proof:</strong> When a price tag is accepted, a cropped high-resolution snippet is saved strictly in the app's private sandboxed directory on your device. This image exists only so you can display it to the cashier in case of a price mismatch. Once the shopping trip is finished or discarded, all photos are permanently deleted.</li>
+          </ul>
+        </div>
+
+        <div class="policy-section">
+          <h2>3. Data Collection and Processing</h2>
+          <p>Under Brazilian LGPD and global privacy standards:</p>
+          <ul>
+            <li><strong>No Personally Identifiable Information (PII):</strong> No accounts, logins, emails, names, or phone numbers are collected or required.</li>
+            <li><strong>No Financial Data:</strong> ConfereJá does not access bank cards or payment systems. The app purchase is handled directly through Google Play Billing.</li>
+            <li><strong>No Location Tracking:</strong> The app does not request or use GPS/Location permissions.</li>
+          </ul>
+        </div>
+
+        <div class="policy-section">
+          <h2>4. Local Storage & User Control</h2>
+          <p>Shopping records (scanned product names, prices, quantities, and dates) are stored strictly within the app's local Room SQLite database on your device.</p>
+          <p>You have full sovereignty over this data: you can delete any trip or item at any time. Uninstalling the app permanently erases all stored data.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>5. Third-Party Data Sharing</h2>
+          <p>ConfereJá <strong>does not sell, rent, or transmit</strong> any user data to third-party ad networks, analytics brokers, or marketing partners. There are no advertising or tracking SDKs inside the app.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>6. Non-Governmental Affiliation</h2>
+          <p>ConfereJá is an independent utility application created to assist consumers. It is not affiliated with, endorsed by, or representing any government entity or official PROCON agency.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>7. Contact Information</h2>
+          <p>For inquiries regarding this policy or privacy practices:</p>
+          <ul>
+            <li><strong>Developer / Data Officer:</strong> BaselCh</li>
+            <li><strong>Email:</strong> <a href="mailto:contato.confereja@gmail.com">contato.confereja@gmail.com</a></li>
+            <li><strong>Repository:</strong> <a href="https://github.com/BaselCh/confereja" target="_blank" rel="noopener">github.com/BaselCh/confereja</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ES Content -->
+      <div id="content-es" style="display:none;">
+        <div class="policy-header">
+          <div style="margin-bottom:12px;">
+            <span class="policy-badge">✓ Conforme LGPD (Ley Brasil 13.709/2018)</span>
+            <span class="policy-badge">✓ Google Play Developer Policy</span>
+          </div>
+          <h1>Política de Privacidad de ConfereJá</h1>
+          <div class="policy-meta">
+            <span>Última actualización: 25 de Septiembre de 2026</span>
+            <span>•</span>
+            <span>Aplicación: <strong>ConfereJá</strong> (com.confereja.app)</span>
+          </div>
+        </div>
+
+        <div class="highlight-box">
+          <strong>Resumen Clave:</strong> <strong>ConfereJá</strong> opera bajo una arquitectura <strong>100% offline</strong>. <strong>NO</strong> recopilamos, <strong>NO</strong> almacenamos en la nube y <strong>NO</strong> compartimos ningún dato personal, ubicación, foto o dato financiero con terceros.
+        </div>
+
+        <div class="policy-section">
+          <h2>1. Introducción y Propósito</h2>
+          <p>Esta Política de Privacidad describe el tratamiento de datos en <strong>ConfereJá</strong>. La aplicación fue diseñada para ayudar a los consumidores a escanear y comparar precios exhibidos en góndolas frente a los cobrados en la caja, en el marco de la legislación de defensa del consumidor.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>2. Permiso de Cámara (android.permission.CAMERA)</h2>
+          <p>ConfereJá solicita acceso a la cámara únicamente para escanear etiquetas de precios en tiempo real mediante OCR local (Google ML Kit).</p>
+          <ul>
+            <li><strong>Procesamiento Local:</strong> Las imágenes se procesan enteramente en el procesador de su teléfono; ningún fotograma se transmite por internet.</li>
+            <li><strong>Memoria Efímera:</strong> Los fotogramas se liberan de la memoria RAM inmediatamente después de la lectura.</li>
+            <li><strong>Foto Temporal de Respaldo:</strong> Se almacena un recorte temporal de la etiqueta en el almacenamiento privado de la app para que pueda mostrarla en caja en caso de divergencia. Al cerrar la compra, las imágenes se eliminan definitivamente.</li>
+          </ul>
+        </div>
+
+        <div class="policy-section">
+          <h2>3. Almacenamiento Local y Privacidad</h2>
+          <p>El historial de compras se guarda de forma local en la base de datos interna (SQLite) de su dispositivo. Usted puede borrar productos o compras en cualquier momento, y la desinstalación elimina por completo todos los registros.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2>4. Contacto</h2>
+          <p>Para preguntas sobre la política de privacidad:</p>
+          <ul>
+            <li><strong>Desarrollador:</strong> BaselCh</li>
+            <li><strong>Correo:</strong> <a href="mailto:contato.confereja@gmail.com">contato.confereja@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div style="max-width:860px; margin:0 auto; padding:0 24px;">
+      <p>© 2026 ConfereJá. Todos os direitos reservados. Em conformidade com a LGPD e Google Play Policies.</p>
+    </div>
+  </footer>
+
+  <script>
+    function setLang(lang) {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      const btn = document.getElementById('btn-' + lang);
+      if (btn) btn.classList.add('active');
+
+      document.getElementById('content-pt').style.display = lang === 'pt' ? 'block' : 'none';
+      document.getElementById('content-en').style.display = lang === 'en' ? 'block' : 'none';
+      document.getElementById('content-es').style.display = lang === 'es' ? 'block' : 'none';
+
+      const backLink = document.getElementById('back-link');
+      if (backLink) {
+        backLink.textContent = lang === 'pt' ? '← Voltar ao Início' : (lang === 'en' ? '← Back to Home' : '← Volver al Inicio');
+      }
+    }
+  </script>
+</body>
+</html>
