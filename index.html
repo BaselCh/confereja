@@ -901,7 +901,7 @@
           <button class="lang-btn" onclick="setLang('es')" id="btn-es">ES</button>
         </div>
 
-        <a href="#baixar" class="btn-cta" data-i18n="nav_download">Baixar APK</a>
+        <a href="#como-funciona" class="btn-cta" data-i18n="nav_download">Conhecer App</a>
       </div>
     </div>
   </header>
@@ -925,14 +925,14 @@
           </p>
 
           <div class="hero-ctas">
-            <a href="https://github.com/BaselCh/confereja/releases/download/v1.0.0/ConfereJa.apk" class="btn-hero-primary" id="baixar">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              <span data-i18n="hero_cta_download">Baixar APK Direto (v1.0)</span>
-            </a>
-
-            <a href="https://play.google.com/store/apps/details?id=com.confereja.app" class="btn-hero-secondary" target="_blank" rel="noopener">
+            <div class="btn-hero-primary" style="cursor:default;">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186c-.198-.2-.31-.476-.31-.767V2.581c0-.291.112-.567.31-.767zM15.207 13.414l2.457 2.458-13.048 7.546 10.591-10.004zM18.828 12l-1.921-1.921 2.378-1.375c.87-.504.87-1.321 0-1.825l-2.378-1.375L18.828 12zm-3.621-1.414L4.616 0.582 17.664 8.128l-2.457 2.458z"/></svg>
-              <span data-i18n="hero_cta_play">Google Play (Em Breve)</span>
+              <span data-i18n="hero_cta_play">Google Play (Lançamento em Breve)</span>
+            </div>
+
+            <a href="#como-funciona" class="btn-hero-secondary">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+              <span data-i18n="hero_cta_how">Como Funciona</span>
             </a>
           </div>
 
@@ -1194,10 +1194,10 @@
       <p data-i18n="cta_sub">Instale o ConfereJá e tenha total controle dos seus gastos e dos seus direitos de consumidor na palma da mão.</p>
       
       <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
-        <a href="https://github.com/BaselCh/confereja/releases/download/v1.0.0/ConfereJa.apk" class="btn-hero-primary">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span data-i18n="cta_dl_btn">Baixar APK Gratuito (Teste)</span>
-        </a>
+        <div class="btn-hero-primary" style="cursor:default;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186c-.198-.2-.31-.476-.31-.767V2.581c0-.291.112-.567.31-.767zM15.207 13.414l2.457 2.458-13.048 7.546 10.591-10.004zM18.828 12l-1.921-1.921 2.378-1.375c.87-.504.87-1.321 0-1.825l-2.378-1.375L18.828 12zm-3.621-1.414L4.616 0.582 17.664 8.128l-2.457 2.458z"/></svg>
+          <span data-i18n="cta_dl_btn">Disponível em Breve na Google Play Store</span>
+        </div>
       </div>
     </div>
   </div>
@@ -1231,7 +1231,7 @@
           <ul>
             <li><span>Desenvolvedor: BaselCh</span></li>
             <li><a href="https://github.com/BaselCh/confereja" target="_blank" rel="noopener">Repositório no GitHub</a></li>
-            <li><a href="mailto:contato.confereja@gmail.com">contato.confereja@gmail.com</a></li>
+            <li><a href="mailto:baseljamal@gmail.com">baseljamal@gmail.com</a></li>
           </ul>
         </div>
       </div>
@@ -1256,11 +1256,11 @@
         nav_cdc: "Direito do Consumidor",
         nav_faq: "Dúvidas",
         nav_privacy: "Privacidade",
-        nav_download: "Baixar APK",
+        nav_download: "Conhecer App",
         hero_badge: "100% Offline • Sem Conta • Privativo",
         hero_title: "O preço na prateleira <br><span class=\"accent\">deve ser o mesmo</span> no caixa.",
         hero_subtitle: "Escaneie etiquetas com a câmera do seu celular, acompanhe o total do carrinho em tempo real e comprove a diferença no caixa com o respaldo do Código de Defesa do Consumidor (CDC).",
-        hero_cta_download: "Baixar APK Direto (v1.0)",
+        hero_cta_how: "Como Funciona",
         hero_cta_play: "Google Play (Em Breve)",
         trust_cdc: "Conforme CDC Art. 30 e 35",
         trust_offline: "Sem Internet e Sem Servidor",
@@ -1314,8 +1314,8 @@
         faq4_q: "Meus dados ou imagens são enviados para algum servidor?",
         faq4_a: "Absolutamente não. Nenhum byte de dado, histórico ou foto sai do seu smartphone. Não temos servidores remotos, não coletamos dados para marketing e respeitamos rigorosamente a LGPD (Lei 13.709/2018).",
         cta_title: "Pronto para nunca mais pagar a mais no supermercado?",
-        cta_sub: "Instale o ConfereJá e tenha total controle dos seus gastos e dos seus direitos de consumidor na palma da mão.",
-        cta_dl_btn: "Baixar APK Gratuito (Teste)",
+        cta_sub: "Em breve você poderá ter total controle dos seus gastos e dos seus direitos de consumidor na palma da mão.",
+        cta_dl_btn: "Disponível em Breve na Google Play Store",
         footer_bio: "Ferramenta auxiliar de conferência de preços de supermercado e apoio ao consumidor. Projetada com foco em simplicidade, privacidade e respeito à legislação brasileira.",
         footer_legal_title: "Legal & Privacidade",
         footer_link_privacy: "Política de Privacidade (LGPD)",
@@ -1328,11 +1328,11 @@
         nav_cdc: "Consumer Rights",
         nav_faq: "FAQ",
         nav_privacy: "Privacy",
-        nav_download: "Download APK",
+        nav_download: "Explore App",
         hero_badge: "100% Offline • No Account • Private",
         hero_title: "The shelf price <br><span class=\"accent\">must be the same</span> at checkout.",
         hero_subtitle: "Scan supermarket shelf labels, track your running cart total in real time, and prove price discrepancies at checkout backed by Brazilian Consumer Law.",
-        hero_cta_download: "Download Direct APK (v1.0)",
+        hero_cta_how: "How It Works",
         hero_cta_play: "Google Play (Coming Soon)",
         trust_cdc: "Backed by Brazilian Consumer Law",
         trust_offline: "No Internet or Servers Needed",
@@ -1386,8 +1386,8 @@
         faq4_q: "Are my photos or data uploaded anywhere?",
         faq4_a: "Never. All data and photos stay encrypted in your device's local sandbox storage. We have no backend servers and do not collect any personal data.",
         cta_title: "Ready to stop overpaying at the supermarket?",
-        cta_sub: "Install ConfereJá today and protect your consumer rights and household budget.",
-        cta_dl_btn: "Download Free Test APK",
+        cta_sub: "Get ready to protect your consumer rights and household budget with total ease.",
+        cta_dl_btn: "Coming Soon on Google Play Store",
         footer_bio: "Auxiliary price verification tool for Brazilian supermarket shoppers. Built for speed, privacy, and full compliance with consumer defense law.",
         footer_legal_title: "Legal & Privacy",
         footer_link_privacy: "Privacy Policy (LGPD)",
@@ -1400,11 +1400,11 @@
         nav_cdc: "Derechos del Consumidor",
         nav_faq: "Preguntas",
         nav_privacy: "Privacidad",
-        nav_download: "Descargar APK",
+        nav_download: "Conocer App",
         hero_badge: "100% Offline • Sin Cuenta • Privado",
         hero_title: "El precio en la góndola <br><span class=\"accent\">debe ser el mismo</span> en la caja.",
         hero_subtitle: "Escanea etiquetas con la cámara de tu móvil, sigue el total de tu carrito en tiempo real y exige el menor precio respaldado por la ley del consumidor.",
-        hero_cta_download: "Descargar APK Directo (v1.0)",
+        hero_cta_how: "Cómo Funciona",
         hero_cta_play: "Google Play (Próximamente)",
         trust_cdc: "Conforme a la Ley del Consumidor",
         trust_offline: "Sin Internet ni Servidores",
@@ -1458,8 +1458,8 @@
         faq4_q: "¿Mis fotos o datos se envían a algún servidor?",
         faq4_a: "En absoluto. Todo permanece cifrado y aislado en la memoria interna de tu teléfono. No recopilamos datos personales.",
         cta_title: "¿Listo para no volver a pagar de más?",
-        cta_sub: "Instala ConfereJá y toma el control de tus compras y tus derechos en la palma de tu mano.",
-        cta_dl_btn: "Descargar APK de Prueba",
+        cta_sub: "Muy pronto podrás tomar el control de tus compras y tus derechos en la palma de tu mano.",
+        cta_dl_btn: "Disponible Próximamente en Google Play",
         footer_bio: "Herramienta auxiliar de verificación de precios de supermercado y apoyo al consumidor. Creada con enfoque en privacidad y legislación.",
         footer_legal_title: "Legal & Privacidad",
         footer_link_privacy: "Política de Privacidad (LGPD)",
