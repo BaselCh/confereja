@@ -252,12 +252,12 @@
         </div>
 
         <div class="policy-section">
-          <h2>3. Imagens Temporárias e Rotina de Exclusão de Arquivos</h2>
-          <p>Quando uma etiqueta é reconhecida e o usuário decide adicioná-la à compra corrente, o aplicativo salva uma imagem estática recortada da etiqueta exclusivamente no diretório de armazenamento interno e privado do aplicativo no aparelho (<em>App-Specific Internal Storage</em>).</p>
+          <h2>3. Imagens Temporárias e Ciclo de Vida dos Arquivos</h2>
+          <p>As fotos são capturadas e salvas localmente no diretório de armazenamento interno e privado do aplicativo (<em>App-Specific Internal Storage</em>) à medida que os produtos são escaneados e adicionados durante a jornada de compras.</p>
           <ul>
-            <li><strong>Finalidade Estrita:</strong> A foto serve exclusivamente como referência visual pessoal para que o consumidor possa conferir e demonstrar o preço anunciado na gôndola caso ocorra divergência no momento do pagamento no caixa.</li>
-            <li><strong>Momento e Natureza da Exclusão:</strong> Quando a compra é finalizada no caixa ou descartada pelo usuário, o aplicativo aciona a exclusão dos arquivos de imagem correspondentes por meio de chamadas padrão do sistema de arquivos (<code>File.delete()</code>).</li>
-            <li><strong>Esclarecimento Técnico:</strong> Esta exclusão constitui uma operação padrão do sistema de arquivos do Android; não representa sanitização criptográfica irrecuperável ou sobrescrita forense em nível de hardware. Na eventualidade de falhas do sistema operacional ou encerramento forçado do processo antes da rotina de limpeza, arquivos residuais de cache podem ser removidos pelo usuário através das opções de gerenciamento de armazenamento do Android.</li>
+            <li><strong>Finalidade e Revisão no Caixa:</strong> As imagens recortadas permanecem disponíveis no dispositivo durante toda a compra para permitir a conferência visual rápida na tela de revisão caso haja divergência de valores no caixa.</li>
+            <li><strong>Acionamento da Exclusão e Resiliência:</strong> No momento em que o usuário finaliza a compra no caixa ou opta por descartar a sessão ativa, o aplicativo aciona imediatamente a rotina de exclusão dos arquivos de imagem por meio de chamadas do sistema (<code>File.delete()</code>), contando com rotinas de repetição (retry) caso ocorra alguma falha transitória na exclusão de algum arquivo.</li>
+            <li><strong>Esclarecimento Técnico:</strong> A remoção baseia-se no sistema de arquivos padrão do Android, sem sobrescrita criptográfica forense. Caso o aplicativo seja fechado de forma forçada pelo sistema antes da conclusão da rotina, eventuais arquivos residuais podem ser limpos a qualquer momento pelo usuário nas configurações do sistema Android.</li>
           </ul>
         </div>
 
@@ -278,17 +278,18 @@
 
         <div class="policy-section">
           <h2>5. Armazenamento Local, Histórico e Controle pelo Usuário</h2>
-          <p>Os registros das compras (nomes lidos, preços, quantidades, data, hora e totais calculados) são gravados em um banco de dados local SQLite (gerenciado via Room) dentro do ambiente isolado (<em>Sandbox</em>) do aplicativo no seu dispositivo.</p>
+          <p>Os registros das compras (supermercado, nomes lidos, preços, quantidades, data, hora e totais calculados) são gravados em um banco de dados local SQLite (gerenciado via Room) dentro do ambiente isolado (<em>Sandbox</em>) do aplicativo no seu dispositivo.</p>
           <p>O usuário dispõe das seguintes opções de controle sobre os dados:</p>
           <ul>
-            <li><strong>Durante a Compra:</strong> Desfazer a última adição ou remover itens durante a conferência na tela de escaneamento e na lista da compra.</li>
-            <li><strong>Descarte da Compra:</strong> Cancelar a compra em andamento antes do salvamento definitivo.</li>
-            <li><strong>Limpeza Completa:</strong> Apagar todos os dados locais do aplicativo por meio da opção disponível nas configurações do aplicativo ou nas configurações do próprio sistema Android (<em>Configurações → Aplicativos → ConfereJá → Armazenamento → Limpar Armazenamento</em>).</li>
-            <li><strong>Evolução do Histórico:</strong> A exclusão seletiva e individual de compras arquivadas no histórico está planejada para ser introduzida em atualizações funcionais subsequentes.</li>
+            <li><strong>Durante a Compra:</strong> Desfazer a última adição ou ajustar quantidades na tela de conferência.</li>
+            <li><strong>Descarte da Compra:</strong> Cancelar a compra ativa a qualquer momento antes da conclusão.</li>
+            <li><strong>Exclusão Individual do Histórico:</strong> Na tela de Histórico, o usuário pode excluir individualmente qualquer compra arquivada de forma direta e imediata.</li>
+            <li><strong>Apagar Compras (Configurações do App):</strong> A opção interna de apagar compras remove todos os registros de transações do banco de dados, <strong>preservando as preferências do usuário (como idioma e tema) e os arquivos exportados</strong>.</li>
+            <li><strong>Limpeza Geral do Sistema:</strong> A remoção completa e irrestrita de todos os dados locais (incluindo preferências de configuração) pode ser executada pelo próprio usuário nas configurações do sistema Android (<em>Configurações → Aplicativos → ConfereJá → Armazenamento → Limpar Armazenamento</em>).</li>
           </ul>
 
           <div class="notice-box">
-            <strong>Aviso sobre Arquivos Exportados:</strong> Se o usuário utilizar recursos de exportação de dados para salvar arquivos (tais como relatórios em formato CSV ou JSON) no armazenamento público do dispositivo (por exemplo, pasta Downloads), esses arquivos exportados permanecem sob custódia e controle manual do usuário e <strong>não</strong> são automaticamente apagados com a desinstalação do aplicativo.
+            <strong>Aviso sobre Arquivos Exportados:</strong> Se o usuário utilizar os recursos de exportação de dados para salvar cópias de suas compras (em formato CSV ou JSON) no armazenamento público do aparelho (como a pasta Downloads), esses arquivos exportados permanecem sob controle do usuário e <strong>não</strong> são afetados pela limpeza interna do histórico nem pela desinstalação do aplicativo.
           </div>
         </div>
 
@@ -360,11 +361,11 @@
 
         <div class="policy-section">
           <h2>3. Temporary Label Images and File Deletion Lifecycle</h2>
-          <p>When a shelf label is recognized and added to an active shopping cart, the app saves a cropped static image snippet of that label exclusively in the app's sandboxed internal storage directory (<em>App-Specific Internal Storage</em>).</p>
+          <p>Photos are captured and saved in the app's sandboxed private internal storage (<em>App-Specific Internal Storage</em>) as items are scanned and added during the shopping trip.</p>
           <ul>
-            <li><strong>Strict Purpose:</strong> This snippet serves solely as an immediate visual reference for the consumer to verify and display the announced shelf price should a pricing discrepancy occur at the checkout register.</li>
-            <li><strong>Deletion Timing and Mechanism:</strong> When a shopping trip is completed or discarded, the app triggers the deletion of these cropped image files using standard operating system filesystem calls (<code>File.delete()</code>).</li>
-            <li><strong>Technical Disclosure:</strong> This deletion represents standard Android filesystem deletion. It does not constitute forensic disk sanitization or cryptographic disk shredding. Should an operating system crash or abnormal termination occur prior to cleanup, residual cache files can be removed manually by the user through Android storage settings.</li>
+            <li><strong>Purpose and Checkout Review:</strong> The cropped label images remain available throughout the shopping trip for visual verification at the checkout counter should any price divergence arise.</li>
+            <li><strong>Deletion Trigger and Retry Resilience:</strong> When the trip is finished or discarded by the user, the app immediately triggers file deletion routines via standard system calls (<code>File.delete()</code>), including retry logic if any transient filesystem deletion failure occurs.</li>
+            <li><strong>Technical Disclosure:</strong> Deletion operates through standard Android filesystem deletion without forensic disk sanitization. Should unexpected system termination occur prior to cleanup, residual temporary files can be cleared manually via Android storage settings.</li>
           </ul>
         </div>
 
@@ -385,17 +386,18 @@
 
         <div class="policy-section">
           <h2>5. Local Storage, History, and User Controls</h2>
-          <p>Shopping trip logs (scanned names, prices, quantities, date, time, and calculated totals) are stored locally in an SQLite database (managed via Room) inside the isolated app sandbox on your device.</p>
+          <p>Shopping trip logs (store name, scanned items, prices, quantities, date, time, and calculated totals) are stored locally in an SQLite database (managed via Room) inside the isolated app sandbox on your device.</p>
           <p>The user exercises the following controls:</p>
           <ul>
-            <li><strong>During Shopping:</strong> Undo the last addition or remove individual items on the scanner panel and cart screen.</li>
-            <li><strong>Discarding a Trip:</strong> Discard an open, active shopping trip prior to final completion.</li>
-            <li><strong>Complete Data Erasure:</strong> Clear all local application records through in-app settings or via Android system settings (<em>Settings → Apps → ConfereJá → Storage → Clear Storage</em>).</li>
-            <li><strong>History Management:</strong> Selective individual deletion of past archived trips from the history log is scheduled for subsequent feature releases.</li>
+            <li><strong>During Shopping:</strong> Undo the last addition or adjust item quantities on the shopping screen.</li>
+            <li><strong>Discarding a Trip:</strong> Cancel and discard an active shopping trip at any time prior to completion.</li>
+            <li><strong>Individual History Deletion:</strong> On the History screen, users can selectively delete individual archived trips immediately.</li>
+            <li><strong>Clear Purchases (In-App Settings):</strong> The in-app purchase reset clears transaction history from the database while <strong>preserving user preferences (such as selected language and theme) and exported files</strong>.</li>
+            <li><strong>Full System Reset:</strong> A complete removal of all local data including preferences can be performed through Android system settings (<em>Settings → Apps → ConfereJá → Storage → Clear Storage</em>).</li>
           </ul>
 
           <div class="notice-box">
-            <strong>Important Notice on Exported Files:</strong> If the user uses data export features to save files (such as CSV or JSON files) to public external storage (e.g., the Downloads folder), those exported files remain under manual user custody and are <strong>not</strong> automatically removed when uninstalling the application.
+            <strong>Important Notice on Exported Files:</strong> When using data export features to save shopping records (such as CSV or JSON files) to public storage (e.g., the Downloads folder), those files remain under direct user control and are <strong>not</strong> removed by in-app history resets or app uninstallation.
           </div>
         </div>
 
@@ -466,12 +468,12 @@
         </div>
 
         <div class="policy-section">
-          <h2>3. Imágenes Temporales y Rutina de Eliminación de Archivos</h2>
-          <p>Cuando se reconoce una etiqueta y el usuario la agrega a su compra, la app guarda un recorte fotográfico estático exclusivamente en el directorio de almacenamiento interno y privado de la aplicación en el dispositivo (<em>App-Specific Internal Storage</em>).</p>
+          <h2>3. Imágenes Temporales y Ciclo de Vida de Archivos</h2>
+          <p>Las fotos se capturan y almacenan localmente en el almacenamiento interno privado de la aplicación (<em>App-Specific Internal Storage</em>) a medida que se escanean y agregan productos durante la jornada de compra.</p>
           <ul>
-            <li><strong>Finalidad Estricta:</strong> La foto sirve únicamente como respaldo visual personal para que el consumidor pueda verificar y demostrar el precio exhibido en góndola en caso de existir discrepancia en la caja.</li>
-            <li><strong>Momento y Mecanismo de Eliminación:</strong> Al finalizar la compra en caja o al descartarla, la aplicación ejecuta la eliminación de los archivos de imagen mediante llamadas estándar del sistema de archivos (<code>File.delete()</code>).</li>
-            <li><strong>Aclaración Técnica:</strong> Esta eliminación constituye una operación estándar del sistema de archivos de Android; no representa una sanitización criptográfica irrecuperable ni un borrado forense de hardware. Si ocurre una interrupción imprevista del sistema operativo antes de la rutina de limpieza, los archivos residuales de caché pueden ser removidos manualmente por el usuario desde la configuración de almacenamiento de Android.</li>
+            <li><strong>Finalidad y Revisión en Caja:</strong> Las imágenes recortadas permanecen accesibles durante toda la compra para permitir una rápida verificación visual en la pantalla de revisión si surge una discrepancia de precios en la caja.</li>
+            <li><strong>Activación del Borrado y Reintentos:</strong> Al finalizar la compra o descartar la sesión, la app activa de inmediato la eliminación de los archivos mediante llamadas del sistema (<code>File.delete()</code>), implementando lógica de reintentos (retry) en caso de fallo transitorio del sistema de archivos.</li>
+            <li><strong>Aclaración Técnica:</strong> La eliminación opera mediante el sistema de archivos estándar de Android sin borrado forense. En caso de cierre forzado del sistema operativo antes de la rutina de limpieza, los archivos temporales pueden borrarse manualmente desde los ajustes de Android.</li>
           </ul>
         </div>
 
@@ -492,17 +494,18 @@
 
         <div class="policy-section">
           <h2>5. Almacenamiento Local, Historial y Control del Usuario</h2>
-          <p>Los registros de compras (nombres leídos, precios, cantidades, fecha, hora y totales calculados) se almacenan localmente en una base de datos SQLite (Room) dentro del entorno protegido (<em>Sandbox</em>) de la app en su dispositivo.</p>
+          <p>Los registros de compras (nombre de tienda, productos leídos, precios, cantidades, fecha, hora y totales calculados) se almacenan localmente en una base de datos SQLite (Room) dentro del entorno protegido (<em>Sandbox</em>) de la app en su dispositivo.</p>
           <p>El usuario dispone de los siguientes controles:</p>
           <ul>
-            <li><strong>Durante la Compra:</strong> Deshacer la última adición o eliminar artículos individuales en la pantalla de escaneo y en la lista de compra.</li>
-            <li><strong>Descarte de Compra:</strong> Cancelar la compra activa en curso antes de guardarla.</li>
-            <li><strong>Eliminación Total:</strong> Borrar todos los datos locales desde las opciones de la aplicación o mediante la configuración del sistema Android (<em>Ajustes → Aplicaciones → ConfereJá → Almacenamiento → Borrar Almacenamiento</em>).</li>
-            <li><strong>Evolución del Historial:</strong> La eliminación selectiva e individual de compras archivadas en el historial está planificada para futuras actualizaciones funcionales.</li>
+            <li><strong>Durante la Compra:</strong> Deshacer la última adición o ajustar cantidades en la pantalla de compra.</li>
+            <li><strong>Descarte de Compra:</strong> Cancelar y descartar la compra activa en cualquier momento antes de finalizarla.</li>
+            <li><strong>Eliminación Individual del Historial:</strong> En la pantalla de Historial, el usuario puede eliminar compras archivadas de forma individual e inmediata.</li>
+            <li><strong>Borrar Compras (Ajustes de la App):</strong> La opción interna de borrar compras elimina los registros de transacciones de la base de datos, <strong>preservando las preferencias del usuario (como idioma y tema visual) y los archivos exportados</strong>.</li>
+            <li><strong>Restablecimiento Total del Sistema:</strong> El borrado íntegro de todos los datos locales (incluyendo preferencias de configuración) puede realizarse desde los ajustes de Android (<em>Ajustes → Aplicaciones → ConfereJá → Almacenamiento → Borrar Almacenamiento</em>).</li>
           </ul>
 
           <div class="notice-box">
-            <strong>Aviso sobre Archivos Exportados:</strong> Si el usuario utiliza funciones de exportación de datos para guardar archivos (como reportes en formato CSV o JSON) en el almacenamiento público del dispositivo (por ejemplo, carpeta Descargas), dichos archivos permanecen bajo custodia y control manual del usuario y <strong>no</strong> se eliminan automáticamente al desinstalar la aplicación.
+            <strong>Aviso sobre Archivos Exportados:</strong> Al utilizar las opciones de exportación para guardar registros (en formato CSV o JSON) en el almacenamiento público del dispositivo (como la carpeta Descargas), dichos archivos quedan bajo el control manual del usuario y <strong>no</strong> se eliminan al limpiar el historial interno ni al desinstalar la aplicación.
           </div>
         </div>
 
