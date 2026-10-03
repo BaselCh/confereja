@@ -8,7 +8,6 @@
   <link rel="icon" type="image/png" href="assets/confereja-play-icon-512.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --teal-900: #083B3E;
@@ -263,6 +262,8 @@
 
         <div class="policy-section">
           <h2>4. Coleta de Telemetria e Diagnóstico pelo Google ML Kit</h2>
+          <p>O aplicativo também mantém localmente as últimas 500 medições de duração e resultado das leituras. O relatório exportado inclui modelo do aparelho e versão do Android, sem fotos, nomes ou preços. Excluir todas as compras apaga essas medições.</p>
+          <p>O Tesseract e seus modelos incluídos leem árabe localmente. Idioma, aparência e país ficam salvos no aparelho; o país inicial usa o país da rede ou a região do dispositivo, sem GPS. Arquivos de fotos sem vínculo são limpos após 24 horas na inicialização, e excluir todas as compras remove também fotos de leituras pendentes.</p>
           <p>Para a funcionalidade de reconhecimento óptico de caracteres em etiquetas, o ConfereJá integra a biblioteca <strong>Google ML Kit Text Recognition</strong> fornecida pela Google LLC.</p>
           <p>Conforme documentado nas diretrizes oficiais da Google (<a href="https://developers.google.com/ml-kit/android-data-disclosure" target="_blank" rel="noopener">Google ML Kit Android Data Disclosure</a>), embora a inferência e o processamento de imagens ocorram 100% no dispositivo e nenhum pixel ou texto lido seja compartilhado com a Google, a biblioteca ML Kit envia à Google LLC dados técnicos e estatísticos de uso, tais como:</p>
           <ul>
@@ -371,6 +372,8 @@
 
         <div class="policy-section">
           <h2>4. Google ML Kit Telemetry and Diagnostic Data Collection</h2>
+          <p>The app also keeps the last 500 scan durations and outcomes locally. An exported report includes phone model and Android version, without photos, names or prices. Deleting all purchases clears these measurements.</p>
+          <p>Bundled Tesseract models also recognize Arabic locally. Language, appearance and shopping country are stored on the device; the initial country uses the network country or device region without GPS. Unreferenced scan photos are cleaned after 24 hours on app startup; deleting all purchases also clears pending scan photos.</p>
           <p>For text recognition on price tags, ConfereJá embeds the <strong>Google ML Kit Text Recognition</strong> library provided by Google LLC.</p>
           <p>In accordance with official Google guidelines (<a href="https://developers.google.com/ml-kit/android-data-disclosure" target="_blank" rel="noopener">Google ML Kit Android Data Disclosure</a>), while model execution and optical parsing are performed 100% on-device and no camera pixels or recognized text are transmitted to Google, the ML Kit library automatically transmits certain technical diagnostics and telemetry metrics to Google LLC, including:</p>
           <ul>
@@ -479,6 +482,8 @@
 
         <div class="policy-section">
           <h2>4. Telemetría y Diagnóstico de Google ML Kit</h2>
+          <p>La aplicación conserva localmente las últimas 500 mediciones de duración y resultado de las lecturas. El informe exportado incluye el modelo y la versión de Android, sin fotos, nombres ni precios. Eliminar todas las compras borra estas mediciones.</p>
+          <p>Los modelos Tesseract incluidos reconocen árabe localmente. Idioma, apariencia y país se guardan en el dispositivo; el país inicial usa el país de la red o la región del dispositivo, sin GPS. Las fotos sin vínculo se eliminan después de 24 horas al iniciar la aplicación; eliminar todas las compras también elimina las fotos pendientes.</p>
           <p>Para la funcionalidad de reconocimiento de texto en etiquetas, ConfereJá integra la biblioteca <strong>Google ML Kit Text Recognition</strong> provista por Google LLC.</p>
           <p>De acuerdo con la documentación oficial de Google (<a href="https://developers.google.com/ml-kit/android-data-disclosure" target="_blank" rel="noopener">Google ML Kit Android Data Disclosure</a>), aunque la inferencia y el análisis de imágenes se ejecutan 100% en el dispositivo y ningún pixel o texto leído se envía a Google, la biblioteca ML Kit transmite automáticamente a Google LLC ciertos datos técnicos y de diagnóstico, tales como:</p>
           <ul>
@@ -551,6 +556,8 @@
 
   <script>
     function setLang(lang) {
+      if (!['pt', 'en', 'es'].includes(lang)) lang = 'pt';
+      document.documentElement.lang = lang;
       document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
       const btn = document.getElementById('btn-' + lang);
       if (btn) btn.classList.add('active');
@@ -564,6 +571,7 @@
         backLink.textContent = lang === 'pt' ? '← Voltar ao Início' : (lang === 'en' ? '← Back to Home' : '← Volver al Inicio');
       }
     }
+    setLang(new URLSearchParams(location.search).get('lang') || 'pt');
   </script>
 </body>
 </html>
